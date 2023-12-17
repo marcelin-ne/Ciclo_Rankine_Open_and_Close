@@ -1,0 +1,456 @@
+Screen:
+    spacing: dp(8)
+    orientation: 'horizontal'
+    canvas.before:
+        Color:
+            rgba: rgba('#ffffff')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    GridLayout:
+        cols: 3
+        # Navigation Menu Left + Forms
+        BoxLayout:
+            id: nav_menu
+            size_hint_x: .3
+            orientation: 'vertical'
+            padding: dp(8)
+            spacing: dp(8)
+            canvas.before:
+                Color:
+                    # rgba: rgba('#F5F5F5')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                id: logo_nbox
+                size_hint_y: .6
+                orientation: 'vertical'
+                padding: ('10dp', '8dp', '12dp', '8dp')
+                spacing: dp(8)
+                BoxLayout:
+                    anchor_x: 'right'
+                    size_hint_x: None
+                    width: dp(300)
+                    BoxLayout:
+                        id: logo_box
+                        Label:
+                            text: 'Facultad de Ing Mecánica'
+                            color: rgba('#000000')
+
+                BoxLayout:
+                    id: entry_form
+                    orientation: 'vertical'
+                    padding: ('10dp', '8dp', '12dp', '8dp')
+                    spacing: dp(11)
+                    size_hint: None, None
+                    size: dp(300), dp(400)
+                    canvas.before:
+                        Color:
+                            # rgba: rgba('#e1aeea')
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    MDLabel:
+                        text: "Datos de entrada"
+                        halign: "center"
+                        theme_text_color: "Custom"
+                        text_color: rgba('#000000')
+                        font_style: "H5"  # Ajusta el tamaño del texto según tus necesidades
+                        font_name: 'Roboto-Bold' 
+
+                    MDTextField:
+                        id:p1
+                        width: "250dp"
+                        height: "50dp"
+                        font_size: "13sp" 
+                        halign: "left" 
+                        icon_left: "thermometer"
+                        hint_text: "Presión en el condensador kPa"
+                        icon_left_color_focus: "orange"
+                        mode: "rectangle"
+                        helper_text: "Min 3 - Max :30 "
+                        helper_text_mode: "on_focus"
+                        # max_text_length: 2
+                        input_filter: "float"
+                        error_color: 1, 0, 0, 1  # Rojo
+                        #required: True
+                    MDTextField:
+                        id:p2
+                        mode: "rectangle"
+                        width: "250dp"
+                        height: "50dp"
+                        font_size: "15sp" 
+                        icon_left: "car-brake-low-pressure"
+                        hint_text: "Presión de entrada de la turbina kPa"
+                        icon_right_color_focus: "orange"
+                        # max_text_length: 5
+                        input_filter: "float"
+                        error_color: 1, 0, 0, 1  # Rojo
+                        helper_text: "Min 2000 - Max :36000 "
+                        helper_text_mode: "on_focus"
+                    MDTextField:
+                        id:p3
+                        mode: "rectangle"
+                        width: "250dp"
+                        height: "50dp"
+                        font_size: "15sp" 
+                        icon_left: "engine-outline"
+                        hint_text: "Presión de extracción kPa"
+                        icon_right_color_focus: "orange"
+                        # max_text_length: 5
+                        input_filter: "float"
+                        helper_text: "Min 1000 - Max :22000 "
+                        helper_text_mode: "on_focus"
+                    MDTextField:
+                        id:t6
+                        mode: "rectangle"
+                        width: "245dp"
+                        height: "50dp"
+                        font_size: "15sp" 
+                        icon_left: "hvac"
+                        hint_text: "Temperatura en la salida de la caldera / entrada"
+                        icon_right_color_focus: "orange"
+                        # max_text_length: 3
+                        input_filter: "float"
+                        helper_text: "Min 200 - Max :800 "
+                        helper_text_mode: "on_focus"
+                    MDTextField:
+                        id:nb
+                        mode: "rectangle"
+                        width: "250dp"
+                        height: "50dp"
+                        font_size: "15sp" 
+                        icon_left: "dots-circle"
+                        hint_text: "Eficiencia de la bomba %"
+                        icon_right_color_focus: "red"
+                        helper_text: "Min 0.2 - Max :1"
+                        helper_text_mode: "on_focus"
+                    MDTextField:
+                        id:nt
+                        mode: "rectangle"
+                        width: "250dp"
+                        height: "50dp"
+                        font_size: "15sp" 
+                        icon_left: "dots-square"
+                        hint_text: "Eficiencia de la turbina %"
+                        icon_right_color_focus: "red"
+                        helper_text: "Min 0.2 - Max :1"
+                        helper_text_mode: "on_focus"
+
+
+                BoxLayout:
+                    id: buttons
+                    padding: ('100dp', '8dp', '12dp', '8dp')
+                    spacing: dp(11)
+                    size_hint: None, None
+                    size: dp(300), dp(50)
+                    halign: "right"
+                    MDRaisedButton:
+                        text: "Calcular"
+                        md_bg_color: "orange"
+                        size_hint: None, None  # Desactiva el ajuste automático del tamaño
+                        size: "170dp", "50dp"
+                        text_color: "white"
+                        halign: "right"
+                        # elevation: 3 #Shadow 
+                        shadow_radius: 10
+                        shadow_color: 1, 0.5, 0, 0.8
+                        on_press:app.resolve()
+
+                    MDRectangleFlatButton:
+                    # MDRaisedButton:
+                        text: "Reiniciar"
+                        theme_text_color: "Custom"
+                        text_color: "black"
+                        line_color: "orange"
+                        text_color:"black"
+                        size_hint: None, None  # Desactiva el ajuste automático del tamaño
+                        size: "170dp", "50dp"
+                        shadow_radius: 10
+                        shadow_color: 1, 0.5, 0, 0.8
+
+        # Main Content
+        BoxLayout:
+            size_hint_x: .5
+            spacing: dp(12)
+            width: dp(100)
+            orientation: 'vertical'
+            padding: ('10dp', '8dp', '12dp', '8dp')
+            canvas.before:
+                Color:
+                    rgba: rgba('#FEFBEA')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            MDCard:
+                size_hint_x: .9
+                size_hint_y: .1
+                width: dp(50)
+                pos_hint: {"center_x": .50, "center_y": .3}
+                elevation: 12 #Shadow
+                padding: ('25dp', '25dp', '0dp', '0dp')
+                spacing:40
+                orientation: 'vertical'
+                style:"filled"
+                # md_bg_color: "#FEF3C5"
+                shadow_color: 1, 0.5, 0, 0.8
+                shadow_softness: 12
+                shadow_offset: 0, 1
+                orientation: 'horizontal'
+                BoxLayout:
+                    # size_hint: None, None
+                    # size: dp(50),dp(10)
+                    size_hint_x: .5
+                    pos_hint: {"center_x": .50, "center_y": .8}
+                    id: logo_box
+                    orientation: 'vertical'
+                    spacing: dp(5)
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Ciclo Ideal Rankine"
+                        font_size: 40
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 3
+                        halign: "left"
+                        theme_text_color: "Custom"
+                        text_color: rgba('#FFA500')
+                        font_style: "H4"  # Ajusta el tamaño del texto según tus necesidades
+                        font_name: 'Roboto-Bold'
+                    MDLabel:
+                        text: 'Calentador cerrado de agua de alimentación y recalentamiento'
+                        halign: "left"
+                        theme_text_color: "Custom"
+                        text_color: rgba('#000000')
+                        font_style: "Caption"  # Ajusta el tamaño del texto según tus necesidades
+                        font_name: 'Roboto-Regular'
+                        font_size:13
+                        font_letter_spacing: 1.5
+                Image:
+                    source: 'draw.png'  # Reemplaza con la ruta de tu imagen
+                    # allow_stretch: True
+                    # keep_ratio: False
+                    size_hint: None, None
+                    size: 10, 15
+                    pos_hint: {"center_x": .50, "center_y": .8}
+            MDCard:
+                id:draw_card
+                size_hint_x: .9
+                pos_hint: {"center_x": .50, "center_y": .8}
+                elevation: 2 #Shadow
+                # padding: ('25dp', '25dp', '25dp', '25dp')
+                # spacing:40
+                orientation: 'vertical'
+                style:"filled"
+                # md_bg_color: "#FEF3C5"
+                shadow_color: 1, 0.5, 0, 0.8
+                shadow_softness: 12
+                shadow_offset: 0, 1
+                Image:
+                    source:'../images/Ciclo_rakine_1.png'
+                     # Reemplaza con la ruta de tu imagen
+                    size_hint: None,None
+                    size: 350,400
+                    pos_hint: {"center_x": .5, "center_y": 1.0}
+        #Col 3 Results cards
+        BoxLayout:
+            size_hint_x: .2
+            spacing: dp(8)
+            orientation: 'vertical'
+            padding: ('10dp', '8dp', '12dp', '8dp')
+            canvas.before:
+                Color:
+                    # rgba: rgba('#CBD0EB')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            MDLabel:
+                id:Data_input_label
+                text: "Resultados"
+                font_size: 40
+                halign: "center"
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+            MDCard:
+                size_hint_x: .9
+                size_hint_y: .3
+                pos_hint: {"center_x": .50, "center_y": .8}
+                elevation: 1 #Shadow
+                padding: ('15dp', '15dp', '15dp', '15dp')
+                spacing:2
+                orientation: 'horizontal'
+                border_radius: 20
+                border_color: 1, 0.5, 0, 0.8
+                MDFloatingActionButton:
+                    icon:"pencil"
+                    icon_center_x: 0.5
+                    theme_icon_color:"Custom"
+                    md_bg_color:"#FED180"
+                    elevation_normal: 12
+                    type:"small"
+                    text_color: "orange"
+                    halign: "center"
+                    elevation: 3 #Shadow 
+                    shadow_radius: 10
+                    shadow_color: 1, 0.5, 0, 0.8
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(2)
+                    padding: ('10dp', '0dp', '0dp', '0dp')
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Y Resultado"
+                        font_size: 12
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+                    MDLabel:
+                        id:Y_result
+                        text: "2453"
+                        font_size: 25
+                        halign: "left"
+                        font_name: 'Roboto-Bold'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Unidades de Calculo "
+                        font_size: 12
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+            MDCard:
+                size_hint_x: .9
+                size_hint_y: .3
+                pos_hint: {"center_x": .50, "center_y": .8}
+                elevation: 1 #Shadow
+                padding: ('15dp', '15dp', '15dp', '15dp')
+                spacing:2
+                orientation: 'horizontal'
+                border_radius: 20
+                border_color: 1, 0.5, 0, 0.8
+                MDFloatingActionButton:
+                    icon:"pencil"
+                    icon_center_x: 0.5
+                    theme_icon_color:"Custom"
+                    md_bg_color:"#FED180"
+                    elevation_normal: 12
+                    type:"small"
+                    text_color: "orange"
+                    halign: "center"
+                    elevation: 3 #Shadow 
+                    shadow_radius: 10
+                    shadow_color: 1, 0.5, 0, 0.8
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(2)
+                    padding: ('10dp', '0dp', '0dp', '0dp')
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Y Resultado"
+                        font_size: 12
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+                    MDLabel:
+                        id:Y_result
+                        text: "2453"
+                        font_size: 25
+                        halign: "left"
+                        font_name: 'Roboto-Bold'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Unidades de Calculo "
+                        font_size: 12
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+            MDCard:
+                size_hint_x: .9
+                size_hint_y: .3
+                pos_hint: {"center_x": .50, "center_y": .8}
+                elevation: 1 #Shadow
+                padding: ('15dp', '15dp', '15dp', '15dp')
+                spacing:2
+                orientation: 'horizontal'
+                border_radius: 20
+                border_color: 1, 0.5, 0, 0.8
+                MDFloatingActionButton:
+                    icon:"pencil"
+                    icon_center_x: 0.5
+                    theme_icon_color:"Custom"
+                    md_bg_color:"#FED180"
+                    elevation_normal: 12
+                    type:"small"
+                    text_color: "orange"
+                    halign: "center"
+                    elevation: 3 #Shadow
+                    shadow_radius: 10
+                    shadow_color: 1, 0.5, 0, 0.8
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(2)
+                    padding: ('10dp', '0dp', '0dp', '0dp')
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Eficiencia Termica"
+                        font_size: 12
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+                    MDLabel:
+                        id:eficiencia_termica
+                        text: "2453"
+                        font_size: 25
+                        halign: "left"
+                        font_name: 'Roboto-Bold'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Unidades de Calculo "
+                        font_size: 12
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+            MDCard:
+                size_hint_x: .9
+                size_hint_y: .8
+                pos_hint: {"center_x": .50, "center_y": .8}
+                elevation: 2 #Shadow
+                padding: ('25dp', '25dp', '25dp', '25dp')
+                spacing:40
+                orientation: 'vertical'
+                MDLabel:
+                    id:trabajo_neto
+                    text: "0"
+                    font_size: 25
+                    halign: "center"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    padding_y: 15
+                MDLabel:
+                    id:Data_input_label
+                    text: "Trabajo Neto"
+                    font_size: 25
+                    halign: "center"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    padding_y: 15

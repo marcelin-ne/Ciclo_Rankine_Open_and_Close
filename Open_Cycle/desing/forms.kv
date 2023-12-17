@@ -1,0 +1,374 @@
+# archivo.kv
+
+MDScreen:
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 10, 10
+
+        # Primera fila
+        MDGridLayout:
+            cols: 4
+            size_hint_y: 0.2
+
+            # Title
+            MDBoxLayout:
+                orientation: 'vertical'
+                #This is my first box, give it a color and style , size 
+                size_hint_x: 0.7
+                spacing: '10dp'
+                padding: '10dp'
+                MDLabel:
+                    text: "Ciclo Rankine"
+                    halign: 'left'
+                    font_style: 'H4'
+                    theme_text_color: 'Custom'
+                    text_color: 1, 1, 1, 1
+                MDLabel:
+                    #This text is a subtitle, give it a style
+                    text: "Con precalentador abierto de agua de alimentacion"
+                    halign: 'left'
+                    font_style: 'H6'
+                    theme_text_color: 'Custom'
+                    text_color: 1, 1, 1, 1
+
+            # Result
+            MDBoxLayout:
+                orientation: 'vertical'
+                orientation: 'vertical'
+                spacing: '10dp'
+                padding: '10dp'
+                size_hint_x:0.3
+                MDLabel:
+                    text: "Calor de Entrada"
+                MDLabel:
+                    id:qin
+                    text: "100"
+            # Result
+            MDBoxLayout:
+                orientation: 'vertical'
+                orientation: 'vertical'
+                spacing: '10dp'
+                padding: '10dp'
+                size_hint_x:0.3
+                MDLabel:
+                    text: "Calor de Salida"
+                MDLabel:
+                    id:qout
+                    text: "100"
+            # Result
+            MDBoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                padding: '10dp'
+                size_hint_x:0.3
+                MDLabel:
+                    text: "Calor en el Intercambiador"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                MDLabel:
+                    id:qint
+                    text: "100"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+
+        # Segunda fila
+        MDGridLayout:
+            cols: 3
+            size_hint_y: 0.8
+
+            # forms
+            MDBoxLayout:
+                orientation:'vertical'
+                size_hint_x: 0.3
+                spacing:10
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: ('5dp', '5dp', '5dp', '5dp')
+                    spacing:40
+                    size_hint_y:0.9
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Datos de Entrada"
+                        font_style: 'H6'
+                        halign: "center"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 5
+                    MDTextField:
+                        id:Pbbp
+                        size_hint_x: 0.95
+                        hint_text: "Presion de la bomba de baja presion (KPa)"
+                        mode: "fill"
+                        helper_text: "Massage"
+                        icon_right: "eye-off"
+                        icon_right_color_focus: "orange"
+                    MDTextField:
+                        id:Pbap
+                        size_hint_x: 0.95
+                        hint_text: "Presion de la bomba de alta presion (KPa)"
+                        mode: "fill"
+                        helper_text: "Massage"
+                        icon_right: "eye-off"
+                        icon_right_color_focus: "orange"
+                    MDTextField:
+                        id:Psal_cald
+                        size_hint_x: 0.95
+                        hint_text: "Presión a la salida de la caldera"
+                        mode: "fill"
+                        max_text_length: 15
+                        helper_text: "Massage"
+                        icon_right: "eye-off"
+                        icon_right_color_focus: "orange"
+                    MDTextField:
+                        id:Tsal_cald
+                        size_hint_x: 0.95
+                        hint_text: "Tempratura a la salida de la caldera (°C)"
+                        mode: "fill"
+                        max_text_length: 15
+                        helper_text: "Massage"
+                        icon_right: "eye-off"
+                        icon_right_color_focus: "orange"
+                    MDTextField:
+                        id:ns_bomba
+                        size_hint_x: 0.95
+                        hint_text: "Eficiencia bomba isentropica"
+                        mode: "fill"
+                        max_text_length: 15
+                        helper_text: "Massage"
+                        icon_right: "percent-outline"
+                        icon_right_color_focus: "orange"
+                    MDTextField:
+                        id:ns_turb
+                        size_hint_x: 0.95
+                        hint_text: "Eficiencia turbina isentropicas"
+                        mode: "fill"
+                        max_text_length: 15
+                        helper_text: "Massage"
+                        icon_right: "percent-outline"
+                        icon_right_color_focus: "orange"
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 10  # Espacio entre los botones
+                    padding: ('5dp', '5dp', '5dp', '5dp')
+                    size_hint_y:0.1
+                    MDRoundFlatButton:
+                        text: "Calcular"
+                        font_size: 20
+                        size_hint_x: 0.4
+                        on_press: app.resolve()
+
+                    MDRoundFlatButton:
+                        text: "Clear"
+                        font_size: 20
+                        size_hint_x: 0.4
+                            #on_press: app.clear()
+
+
+            # Draw
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_x: 0.6
+                Image:
+                    source:'../images/base_image.png'
+
+
+            # Results
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_x: 0.3
+                MDCard:
+                    elevation: 1 #Shadow
+                    padding: ('15dp', '15dp', '15dp', '15dp')
+                    spacing:2
+                    orientation: 'horizontal'
+                    border_radius: 20
+                    border_color: 1, 0.5, 0, 0.8
+                    MDFloatingActionButton:
+                        icon:"pencil"
+                        icon_center_x: 0.5
+                        theme_icon_color:"Custom"
+                        md_bg_color:"#FED180"
+                        elevation_normal: 12
+                        type:"small"
+                        text_color: "orange"
+                        halign: "center"
+                        elevation: 3 #Shadow 
+                        shadow_radius: 10
+                        shadow_color: 1, 0.5, 0, 0.8
+                    BoxLayout:
+                        orientation: 'vertical'
+                        spacing: dp(2)
+                        padding: ('10dp', '0dp', '0dp', '0dp')
+                        MDLabel:
+                            id:Data_input_label
+                            text: "Eficiencia del Ciclo"
+                            font_size: 12
+                            halign: "left"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding_y: 0
+                        MDLabel:
+                            id:n
+                            text: "2453"
+                            font_size: 25
+                            halign: "left"
+                            font_name: 'Roboto-Bold'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding_y: 0
+                        MDLabel:
+                            id:Data_input_label
+                            text: "Unidades de Calculo "
+                            font_size: 12
+                            halign: "left"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding_y: 0
+                MDCard:
+                    elevation: 1 #Shadow
+                    padding: ('15dp', '15dp', '15dp', '15dp')
+                    spacing:2
+                    orientation: 'horizontal'
+                    border_radius: 20
+                    border_color: 1, 0.5, 0, 0.8
+                    MDFloatingActionButton:
+                        icon:"pencil"
+                        icon_center_x: 0.5
+                        theme_icon_color:"Custom"
+                        md_bg_color:"#FED180"
+                        elevation_normal: 12
+                        type:"small"
+                        text_color: "orange"
+                        halign: "center"
+                        elevation: 3 #Shadow 
+                        shadow_radius: 10
+                        shadow_color: 1, 0.5, 0, 0.8
+                    BoxLayout:
+                        orientation: 'vertical'
+                        spacing: dp(2)
+                        padding: ('10dp', '0dp', '0dp', '0dp')
+                        MDLabel:
+                            id:Data_input_label
+                            text: "Trabajo Neto"
+                            font_size: 12
+                            halign: "left"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding_y: 0
+                        MDLabel:
+                            id:wneto
+                            text: "2453"
+                            font_size: 25
+                            halign: "left"
+                            font_name: 'Roboto-Bold'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding_y: 0
+                        MDLabel:
+                            id:Data_input_label
+                            text: "Unidades de Calculo "
+                            font_size: 12
+                            halign: "left"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding_y: 0
+                #Entalpias 
+                MDLabel:
+                    text:"Entalpias"
+                #H1
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y:0.2
+                    padding: "10dp"
+                    MDLabel:
+                        text: "H1"
+                    MDProgressBar:
+                        id: h1
+                        value: 5
+                        color: app.theme_cls.accent_color
+                #H2
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y:0.2
+                    padding: "10dp"
+                    MDLabel:
+                        text: "H2"
+                    MDProgressBar:
+                        id: h2
+                        value: 15
+                        color: app.theme_cls.accent_color
+                #H3
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y:0.2
+                    padding: "10dp"
+                    MDLabel:
+                        text: "H3"
+                    MDProgressBar:
+                        id: h3
+                        value: 50
+                        color: app.theme_cls.accent_color
+                #H4
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y:0.2
+                    padding: "10dp"
+                    MDLabel:
+                        text: "H4"
+                    MDProgressBar:
+                        id: h4
+                        value: 35
+                        color: app.theme_cls.accent_color
+                #H5
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y:0.2
+                    padding: "10dp"
+                    MDLabel:
+                        text: "H5"
+                    MDProgressBar:
+                        id: h5
+                        value: 25
+                        color: app.theme_cls.accent_color
+                #H6
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y:0.2
+                    padding: "10dp"
+                    MDLabel:
+                        text: "H6"
+                    MDProgressBar:
+                        id: h6
+                        value: 45
+                        color: app.theme_cls.accent_color
+                #H7
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y:0.2
+                    padding: "10dp"
+                    MDLabel:
+                        text: "H7"
+                    MDProgressBar:
+                        id: h7
+                        value: 5
+                        color: app.theme_cls.accent_color
+                MDLabel:
+                    text:'Fraccion de Vapor'
+                BoxLayout:
+                    orientation:'horizontal'
+                    MDLabel:
+                        text:"Y"
+                    MDLabel:
+                        id:y
+                        text:"100"
+                BoxLayout:
+                    orientation:'horizontal'
+                    MDLabel:
+                        text:"Y-1"
+                    MDLabel:
+                        id:y1
+                        text:"1000"
+

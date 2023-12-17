@@ -1,0 +1,17 @@
+BoxLayout:
+    orientation: 'vertical'
+
+    MDCard:
+        size_hint: None, None
+        size: "280dp", "180dp"
+        pos_hint: {"center_x": 0.5}
+        BoxLayout:
+            orientation: 'vertical'
+            MDLabel:
+                text: "Contenido de la tarjeta"
+            Widget:
+                id: canvas_widget  # Widget para el lienzo
+
+    MDRaisedButton:
+        text: "Dibujar Línea"
+        on_press: app.draw_line()

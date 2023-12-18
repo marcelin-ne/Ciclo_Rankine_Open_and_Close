@@ -7,34 +7,34 @@ from calculator import Rankine_P_Close
 from delimeter import Delimiter
 from line_drawer import LineDrawer
 from kivy.graphics import Color, InstructionGroup, Line
-Builder.load_file('myform.kv')
+Builder.load_file('../design/myform_v2.kv')
 
 class MyForm(BoxLayout):
     line_drawer = LineDrawer()
     def __init__(self,**kwargs):
         super(MyForm, self).__init__(**kwargs)
         self.hs= {}
-        self.line_drawer = LineDrawer()
-        self.add_widget(self.line_drawer)
-        # Crear un InstructionGroup para contener las instrucciones de dibujo
-        self.cuadrado_instruction = InstructionGroup()
+        # self.line_drawer = LineDrawer()
+        # self.add_widget(self.line_drawer)
 
-            # Coordenadas del cuadrado (ejemplo: 100x100 con un tamaño de 200x200)
-        x, y, size = 1300, 200, 1100
-
-            # Agregar líneas para formar un cuadrado
-        self.cuadrado_instruction.add(Line(points=[x, y, x + size, y, x + size, y + size, x, y + size, x, y]))
-
-        self.canvas.add(self.cuadrado_instruction)
-    
     def resolve(self):
         #Restart the lines
-        self.line_drawer.redraw()
+        # self.line_drawer.redraw()
+        line_drawer=self.ids.line_drawer
         #Create the object
         cr_close=Rankine_P_Close({},{})
         delimeter=Delimiter()
         #cr_open.calc_ciclo_rankine_in_precal_open_water(float(self.ids.pbbp.text), self.ids.pbap.text, self.ids.psal_cald.text, self.ids.tsal_cald.text, self.ids.ns_turb.text, self.ids.ns_bomba.text)
-        cr_close.calc_ciclo_rankine_in_precal_close_water(float(self.ids.p1.text), 0, float(self.ids.p2.text), float(self.ids.p3.text), 0, float(self.ids.T6.text), float(self.ids.mp.text), float(self.ids.nb.text), float(self.ids.nt.text))
+        # cr_close.calc_ciclo_rankine_in_precal_close_water(float(self.ids.p1.text), 0, float(self.ids.p2.text), float(self.ids.p3.text), 0, float(self.ids.T6.text), float(self.ids.mp.text), float(self.ids.nb.text), float(self.ids.nt.text))
+        cr_close.calc_ciclo_rankine_in_precal_close_water(
+            float(self.ids.p1.text),
+            float(self.ids.p2.text),
+            float(self.ids.p3.text),
+            float(self.ids.T6.text),
+            float(self.ids.nb.text),
+            float(self.ids.nt.text)
+            )
+
         print(cr_close.hs)
         print(cr_close.results)
         self.ids.eficiencia_termica.text = str(cr_close.results['eta']) + " %"
@@ -44,7 +44,8 @@ class MyForm(BoxLayout):
         print(hs)
         #Until here i past
         ids=self.line_drawer.get_lines_ids()
-        self.redraw_based_on_hs( hs)
+        self.line_drawer.draw_base()
+        # self.redraw_based_on_hs( hs)
 
     def redraw_based_on_hs(self, hs):
         #h1a
@@ -87,18 +88,18 @@ class MyForm(BoxLayout):
         #h9b
         new_point=self.line_drawer.get_line_coordinate('h9a', 0)
         self.line_drawer.animate_lines_grow_negative('h9b', new_point, 1)
-        #3h7
-        self.line_drawer.draw_line_connecting_two_lines('h3a', 'h7a', '3h7')
-        #1h2
-        self.line_drawer.draw_line_connecting_two_lines('h2a', 'h1a', '1h2')
-        #5h6
-        self.line_drawer.draw_line_connecting_two_lines('h5a', 'h6a', '5h6')
-        #4h5
-        self.line_drawer.draw_line_connecting_two_lines('h4a', 'h5a', '4h5')
-        #9h5
-        self.line_drawer.draw_line_connecting_two_lines('h9a', 'h5a', '9h5')
-        #1h8
-        self.line_drawer.draw_line_connecting_two_lines('h1a', 'h8a', '1h8')
+        # #3h7
+        # self.line_drawer.draw_line_connecting_two_lines('h3a', 'h7a', '3h7')
+        # #1h2
+        # self.line_drawer.draw_line_connecting_two_lines('h2a', 'h1a', '1h2')
+        # #5h6
+        # self.line_drawer.draw_line_connecting_two_lines('h5a', 'h6a', '5h6')
+        # #4h5
+        # self.line_drawer.draw_line_connecting_two_lines('h4a', 'h5a', '4h5')
+        # #9h5
+        # self.line_drawer.draw_line_connecting_two_lines('h9a', 'h5a', '9h5')
+        # #1h8
+        # self.line_drawer.draw_line_connecting_two_lines('h1a', 'h8a', '1h8')
 
 
 
@@ -110,7 +111,7 @@ class MyForm(BoxLayout):
 class MyApp(App):
     def build(self):
         Window.clearcolor = (1, 1, 1, 1)
-        Window.size = (1300, 700)
+        # Window.size = (1300, 700)
         myform_instance = MyForm()
         return MyForm()
 

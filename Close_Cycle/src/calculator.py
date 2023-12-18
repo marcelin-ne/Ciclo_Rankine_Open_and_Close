@@ -20,7 +20,10 @@ class Rankine_P_Close:
     def format_result(self,hx):
             return "{:.2f}".format(hx/1000)
 
-    def calc_ciclo_rankine_in_precal_close_water(self,p1, x1, p2, p3, x3, T6,nb,nt):
+    def calc_ciclo_rankine_in_precal_close_water(self,p1, p2, p3, T6,nb,nt):
+        p1 = p1*1000  # Presión a la salida del condensador en Pa
+        p2 = p2*1000  # Presión a la salida de la segunda bomba en Pa
+        p3 = p3*1000 
         # Definir las propiedades de entrada
         p4 = p2 # Presión a la salida de la segunda bomba
         p5 = p2 # Presión a la entrada de la caldera en Pa
@@ -29,6 +32,9 @@ class Rankine_P_Close:
         p8 = p1 # Presión a la salida de la turbina hacia el condensador en Pa
         p9 = p2 # Presión a la salida del CAA cerrado
         mp = 15 
+        x1 = 0.0 # Calidad salida del condensador
+        x3 = 0.0
+
         # Calcular laS propiedades en cada punto del ciclo
         h1 = PropsSI('H', 'Q', x1, 'P', p1, 'Water')
         s1 = PropsSI('S', 'Q', x1, 'P', p1, 'Water')

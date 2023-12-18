@@ -184,7 +184,7 @@ Screen:
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            MDCard:
+            BoxLayout:
                 size_hint_x: .9
                 size_hint_y: .1
                 width: dp(50)
@@ -236,7 +236,7 @@ Screen:
                     size_hint: None, None
                     size: 10, 15
                     pos_hint: {"center_x": .50, "center_y": .8}
-            MDCard:
+            BoxLayout:
                 id:draw_card
                 size_hint_x: .9
                 pos_hint: {"center_x": .50, "center_y": .8}
@@ -249,12 +249,25 @@ Screen:
                 shadow_color: 1, 0.5, 0, 0.8
                 shadow_softness: 12
                 shadow_offset: 0, 1
-                Image:
-                    source:'../images/Ciclo_rakine_1.png'
-                     # Reemplaza con la ruta de tu imagen
-                    size_hint: None,None
-                    size: 350,400
-                    pos_hint: {"center_x": .5, "center_y": 1.0}
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: main_box  # Asigna un ID al BoxLayout principal
+                    LineDrawer:
+                        id: line_drawer  # Asigna un ID al LineDrawer
+                    Image:
+                        source:'../images/Ciclo_rakine_1.png'
+                        # Reemplaza con la ruta de tu imagen
+                        size_hint: None,None
+                        size:800, 1000  # Ajusta estos valores según tus necesidades
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        border: 5, 5, 5, 5  # Ajusta estos valores según el ancho del borde que desees
+                        #Add border 
+                        canvas.before:
+                            Color:
+                                rgba: rgba('#aaaaaa')
+                            Line:
+                                width: 2
+                                rectangle: (self.x-70, self.y, self.width+140, self.height+10)
         #Col 3 Results cards
         BoxLayout:
             size_hint_x: .2

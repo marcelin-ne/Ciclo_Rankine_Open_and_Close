@@ -8,14 +8,14 @@ from kivy.lang import Builder
 from kivy.properties import NumericProperty
 from kivy.properties import NumericProperty
 from kivy.properties import AliasProperty
-
+from kivy.clock import Clock
 # Builder.load_file('line_drawer.kv')
 
 class LineDrawer(Widget):
     def __init__(self, **kwargs):
         super(LineDrawer, self).__init__(**kwargs)
-        # self.bind(size=self.redraw)
-        # self.draw_base()
+        #self.bind(size=self.redraw)
+        self.draw_base()
 
     def update_and_redraw(self, new_h6):
         # Actualizar el valor de length_h6
@@ -60,18 +60,22 @@ class LineDrawer(Widget):
         anim.start(line)
 
 
-    def animate_lines_horizontal(self,line_id, hs, duration=1):
+    def animate_lines_horizontal(self,line_id, hs, duration=3):
         # Agrega una animación a la línea con el identificador dado
         line = self.ids[line_id]
         print(f"Linea {line_id}")
         print(line.points)
-        new_points = [line.points[0] + hs, line.points[1], line.points[2] + hs, line.points[3]]
-        anim = Animation(points=new_points, duration=duration)
-        # anim = Animation(points=[line.points[0]+hs, line.points[1], line.points[2]+hs, line.points[3]], duration=duration)
+        #new_points = [line.points[0] + hs, line.points[1], line.points[2] + hs, line.points[3]]
+        new_points = [int(line.points[0] + hs), line.points[1], int(line.points[2] + hs), line.points[3]]
+        #Print line id + hs 
+        print(f"Linea {line_id} + {hs}")
+        #anim = Animation(points=new_points, duration=duration)
+        anim = Animation(points=[line.points[0]+hs, line.points[1], line.points[2]+hs, line.points[3]], duration=duration)
         anim.start(line)
-        line.points = new_points
-        print(f"Linea {line_id}")
-        print(line.points)
+        # line.points = new_points
+        print(f"Linea New  {line_id}")
+        print(f"Nuevas coordenadas: {new_points}")
+        
     #Negative because it moves to the left
     def animate_lines_grow_negative(self,line_id, point_final, duration=1):
         # Agrega una animación a la línea con el identificador dado
@@ -95,40 +99,46 @@ class LineDrawer(Widget):
 
     def draw_base(self):
         # Dibuja las líneas base
-        self.draw_line(1490, 790, 1490, 1100, 'h6a', color=(0.5, 0, 0.5, 1), width=4)
-        self.draw_line(1490, 1100, 1800, 1100, 'h6b', color=(0.5, 0, 0.5, 1), width=3)
-        self.draw_line(2350, 850, 2350, 1000, 'h7a', color=(0, 0, 1, 1), width=2)
-        self.draw_line(1920, 1000, 2350, 1000, 'h7b', color=(0, 0, 1, 1), width=2)
-        self.draw_line(2280, 300, 2280, 480, 'h3a', color=(0, 0.5, 0.5, 1), width=2)
-        self.draw_line(1830, 300, 2280, 300, 'h3b', color=(0, 0.5, 0.5, 1), width=2)
+        self.draw_line(950, 700, 950, 800, 'h6a', color=(0, 0, 0, 1), width=3)
+        self.draw_line(950, 800, 1150, 800, 'h6b', color=(0, 0, 0, 1), width=3)
+        
+        self.draw_line(1540, 650, 1540, 780, 'h7a', color=(0.5, 0, 0.5, 1), width=2)
+        self.draw_line(1340, 780, 1540, 780, 'h7b', color=(0.5, 0, 0.5, 1), width=2)
+        #Change the color to purple
+        self.draw_line(1515, 265, 1515, 480, 'h3a', color=(1, 0, 0, 1), width=2)
+        self.draw_line(1300, 265, 1515, 265, 'h3b', color=(1, 0, 0, 1), width=2)
         #Line 7h3
-        self.draw_line(2280, 480, 2350, 850, '3h7', color=(0.5, 0.5, 0.5, 1), width=1)
-        self.draw_line(2250, 850, 2250, 930, 'h8a', color=(0, 1, 1, 1), width=2)
-        self.draw_line(2000, 930, 2250, 930, 'h8b', color=(0, 1, 1, 1), width=3)
-        self.draw_line(1570, 255, 1570, 545, 'h4a', color=(0.5, 0.5, 0.5, 1), width=2)
-        self.draw_line(1570, 255, 1770, 255, 'h4b', color=(0.5, 0.5, 0.5, 1), width=2)
-        self.draw_line(1630, 300, 1630, 545, 'h9a', color=(0.5, 1, 0.5, 1), width=4)
-        self.draw_line(1630, 300, 1830, 300, 'h9b', color=(0.5, 1, 0.5, 1), width=4)
-        self.draw_line(1590, 630, 1590, 680, 'h5a', color=(0.5, 0, 0.5, 1), width=4)
-        self.draw_line(2150, 385, 2150, 600, 'h2a', color=(0.5, 0, 1, 1), width=2)
-        self.draw_line(2030, 385, 2150, 385, 'h2b', color=(0.5, 0, 1, 1), width=2)
-        self.draw_line(2200, 635, 2200, 700, 'h1a', color=(0, 0, 1, 1), width=2)
+        # self.draw_line(2280, 480, 2350, 850, '3h7', color=(0.5, 0.5, 0.5, 1), width=1)
+        self.draw_line(1480, 650, 1480, 750, 'h8a', color=(0, 0, 1, 1), width=2)
+        self.draw_line(1400, 750, 1480, 750, 'h8b', color=(0, 0, 1, 1), width=3)
+        self.draw_line(955, 255, 955, 500, 'h4a', color=(1, 0, 0, 1), width=2)
+        self.draw_line(955, 255, 1250, 255, 'h4b', color=(1, 0, 0, 1), width=2)
+        self.draw_line(1010, 290, 1010, 500, 'h9a',color=(0, 0, 1, 1), width=4)
+        self.draw_line(1010, 290, 1230, 290, 'h9b', color=(0, 0, 1, 1), width=4)
+
+        self.draw_line(980, 520, 980, 580, 'h5a', color=(0, 0, 0, 1), width=3)
+
+        self.draw_line(1450, 320, 1450, 500, 'h2a', color=(0, 0, 1, 1), width=2)
+        self.draw_line(1390, 320, 1450, 320, 'h2b', color=(0, 0, 1, 1), width=2)
+        self.draw_line(1493, 520, 1493, 600, 'h1a', color=(0, 0, 0, 1), width=2)
         #Line 1h2
-        self.draw_line(2150, 600, 2200, 635, '1h2', color=(0.5, 0.5, 0.5, 1), width=1)
+        # self.draw_line(2150, 600, 2200, 635, '1h2', color=(0.5, 0.5, 0.5, 1), width=1)
         #line 5h6
-        self.draw_line(1590, 680, 1490, 790, '5h6', color=(0.5, 0.5, 0.5, 1), width=1)
+        # self.draw_line(950, 700, 980, 580, '5h6', color=(0.5, 0.5, 0.5, 1), width=1)
         #line 4h5
-        self.draw_line(1570, 545, 1590, 630, '4h5', color=(0.5, 0.5, 0.5, 1), width=1)
+        # self.draw_line(1570, 545, 1590, 630, '4h5', color=(0.5, 0.5, 0.5, 1), width=1)
+        #Refine the line 4h5 with the new coordinate 
+        # self.draw_line(1590, 630, 1630, 545, '4h5', color=(0.5, 0.5, 0.5, 1), width=1)
         #Line 9h5
-        self.draw_line(1630, 545,1590, 630, '9h5', color=(0.5, 0.5, 0.5, 1), width=1)
+        # self.draw_line(1630, 545,1590, 630, '9h5', color=(0.5, 0.5, 0.5, 1), width=1)
         #Line 6h8
-        self.draw_line(1800, 1100, 2000, 930, '6h8', color=(0.5, 0.5, 0.5, 1), width=1)
+        # self.draw_line(1800, 1100, 2000, 930, '6h8', color=(0.5, 0.5, 0.5, 1), width=1)
         #Line 1h8
-        self.draw_line(2200, 700, 2250, 850, '1h8', color=(0.5, 0.5, 0.5, 1), width=1)
+        # self.draw_line(2200, 700, 2250, 850, '1h8', color=(0.5, 0.5, 0.5, 1), width=1)
         #line 2h9
-        self.draw_line(1830, 300, 2030, 385, '2h9', color=(0.5, 0.5, 0.5, 1), width=1)
+        # self.draw_line(1830, 300, 2030, 385, '2h9', color=(0.5, 0.5, 0.5, 1), width=1)
         #line 3h4
-        self.draw_line(1770, 255, 1830, 300, '3h4', color=(0.5, 0.5, 0.5, 1), width=1)
+        # self.draw_line(1770, 255, 1830, 300, '3h4', color=(0.5, 0.5, 0.5, 1), width=1)
 
 
     def redraw(self, *args):

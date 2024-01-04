@@ -10,6 +10,7 @@ from kivy.uix.label import Label
 from kivy.app import App
 from kivymd.app import MDApp
 from kivy.animation import Animation
+from kivymd.uix.responsivelayout import MDResponsiveLayout
 #Import packages for the logic
 from calculator import Rankine_P_Close
 from delimeter import Delimiter

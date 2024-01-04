@@ -12,28 +12,38 @@ Screen:
         # Navigation Menu Left + Forms
         BoxLayout:
             id: nav_menu
-            size_hint_x: .3
+            size_hint_x: .2
             orientation: 'vertical'
             padding: dp(8)
             spacing: dp(8)
             canvas.before:
                 Color:
-                    # rgba: rgba('#F5F5F5')
+                    rgba: rgba('#E3C1E6')
                 Rectangle:
                     pos: self.pos
                     size: self.size
 
             BoxLayout:
                 id: logo_nbox
-                size_hint_y: .6
+                size_hint: 1, None
+                size_hint_y: .2
+
                 orientation: 'vertical'
                 padding: ('10dp', '8dp', '12dp', '8dp')
                 spacing: dp(8)
                 BoxLayout:
                     anchor_x: 'right'
-                    size_hint_x: None
-                    width: dp(300)
+                    # size_hint_x: None
+                    # width: .5 * self.parent.width
+                    size_hint_y: .2
+                    height: dp(50)
                     BoxLayout:
+                        canvas.before:
+                            Color:
+                                rgba: rgba('#e0FF1a')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
                         id: logo_box
                         Label:
                             text: 'Facultad de Ing Mecánica'
@@ -42,13 +52,13 @@ Screen:
                 BoxLayout:
                     id: entry_form
                     orientation: 'vertical'
-                    padding: ('10dp', '8dp', '12dp', '8dp')
+                    padding: ('20dp', '20dp', '20dp', '20dp')
                     spacing: dp(11)
-                    size_hint: None, None
-                    size: dp(300), dp(400)
+                    size_hint_y: .6
+                    # height: dp(50)
                     canvas.before:
                         Color:
-                            # rgba: rgba('#e1aeea')
+                            rgba: rgba('#e1Feea')
                         Rectangle:
                             pos: self.pos
                             size: self.size
@@ -58,14 +68,10 @@ Screen:
                         theme_text_color: "Custom"
                         text_color: rgba('#000000')
                         font_style: "H5"  # Ajusta el tamaño del texto según tus necesidades
-                        font_name: 'Roboto-Bold' 
-
+                        font_name: 'Roboto-Bold'
                     MDTextField:
                         id:p1
-                        width: "250dp"
-                        height: "50dp"
-                        font_size: "13sp" 
-                        halign: "left" 
+                        height: .1 * self.parent.height
                         icon_left: "thermometer"
                         hint_text: "Presión en el condensador kPa"
                         icon_left_color_focus: "orange"
@@ -74,13 +80,12 @@ Screen:
                         helper_text_mode: "on_focus"
                         # max_text_length: 2
                         input_filter: "float"
-                        error_color: 1, 0, 0, 1  # Rojo
-                        #required: True
+                        error_color: 1, 0, 0, 1
                     MDTextField:
                         id:p2
                         mode: "rectangle"
                         width: "250dp"
-                        height: "50dp"
+                        height: .1 * self.parent.height
                         font_size: "15sp" 
                         icon_left: "car-brake-low-pressure"
                         hint_text: "Presión de entrada de la turbina kPa"
@@ -94,7 +99,7 @@ Screen:
                         id:p3
                         mode: "rectangle"
                         width: "250dp"
-                        height: "50dp"
+                        height: .1 * self.parent.height
                         font_size: "15sp" 
                         icon_left: "engine-outline"
                         hint_text: "Presión de extracción kPa"
@@ -107,7 +112,7 @@ Screen:
                         id:t6
                         mode: "rectangle"
                         width: "245dp"
-                        height: "50dp"
+                        height: .1 * self.parent.height
                         font_size: "15sp" 
                         icon_left: "hvac"
                         hint_text: "Temperatura en la salida de la caldera / entrada"
@@ -120,7 +125,7 @@ Screen:
                         id:nb
                         mode: "rectangle"
                         width: "250dp"
-                        height: "50dp"
+                        height: .1 * self.parent.height
                         font_size: "15sp" 
                         icon_left: "dots-circle"
                         hint_text: "Eficiencia de la bomba %"
@@ -131,8 +136,8 @@ Screen:
                         id:nt
                         mode: "rectangle"
                         width: "250dp"
-                        height: "50dp"
-                        font_size: "15sp" 
+                        height: .1 * self.parent.height
+                        font_size: "15sp"
                         icon_left: "dots-square"
                         hint_text: "Eficiencia de la turbina %"
                         icon_right_color_focus: "red"
@@ -145,7 +150,8 @@ Screen:
                     padding: ('100dp', '8dp', '12dp', '8dp')
                     spacing: dp(11)
                     size_hint: None, None
-                    size: dp(300), dp(50)
+                    size_hint_y: .1
+                    # size: dp(300), dp(50)
                     halign: "right"
                     MDRaisedButton:
                         text: "Calcular"
@@ -283,17 +289,18 @@ Screen:
             MDLabel:
                 id:Data_input_label
                 text: "Resultados"
-                font_size: 40
+                font_size: 60
                 halign: "center"
                 size_hint_y: None
                 height: self.texture_size[1]
-                padding_y: 15
+                padding_y: 40
             MDCard:
                 size_hint_x: .9
-                size_hint_y: .3
+                size_hint_y: None
+                height: .1 * self.parent.height
                 pos_hint: {"center_x": .50, "center_y": .8}
                 elevation: 1 #Shadow
-                padding: ('15dp', '15dp', '15dp', '15dp')
+                padding: ('25dp', '25dp', '25dp', '25dp')
                 spacing:2
                 orientation: 'horizontal'
                 border_radius: 20
@@ -310,7 +317,35 @@ Screen:
                     elevation: 3 #Shadow 
                     shadow_radius: 10
                     shadow_color: 1, 0.5, 0, 0.8
-                
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(2)
+                    padding: ('10dp', '0dp', '0dp', '0dp')
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Y Resultado"
+                        font_size: 12
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+                    MDLabel:
+                        id:Y_result
+                        text: "2453"
+                        font_size: 25
+                        halign: "left"
+                        font_name: 'Roboto-Bold'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
+                    MDLabel:
+                        id:Data_input_label
+                        text: "Unidades de Calculo "
+                        font_size: 12
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding_y: 0
                 BoxLayout:
                     orientation: 'vertical'
                     spacing: dp(2)
@@ -342,10 +377,12 @@ Screen:
                         padding_y: 0
             MDCard:
                 size_hint_x: .9
-                size_hint_y: .3
+                size_hint_y: None
+                height: .1 * self.parent.height
+
                 pos_hint: {"center_x": .50, "center_y": .8}
                 elevation: 1 #Shadow
-                padding: ('15dp', '15dp', '15dp', '15dp')
+                padding: ('25dp', '25dp', '25dp', '25dp')
                 spacing:2
                 orientation: 'horizontal'
                 border_radius: 20
@@ -362,7 +399,6 @@ Screen:
                     elevation: 3 #Shadow 
                     shadow_radius: 10
                     shadow_color: 1, 0.5, 0, 0.8
-                
                 BoxLayout:
                     orientation: 'vertical'
                     spacing: dp(2)
@@ -392,28 +428,6 @@ Screen:
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding_y: 0
-            MDCard:
-                size_hint_x: .9
-                size_hint_y: .3
-                pos_hint: {"center_x": .50, "center_y": .8}
-                elevation: 1 #Shadow
-                padding: ('15dp', '15dp', '15dp', '15dp')
-                spacing:2
-                orientation: 'horizontal'
-                border_radius: 20
-                border_color: 1, 0.5, 0, 0.8
-                MDFloatingActionButton:
-                    icon:"pencil"
-                    icon_center_x: 0.5
-                    theme_icon_color:"Custom"
-                    md_bg_color:"#FED180"
-                    elevation_normal: 12
-                    type:"small"
-                    text_color: "orange"
-                    halign: "center"
-                    elevation: 3 #Shadow
-                    shadow_radius: 10
-                    shadow_color: 1, 0.5, 0, 0.8
                 BoxLayout:
                     orientation: 'vertical'
                     spacing: dp(2)
@@ -445,25 +459,165 @@ Screen:
                         padding_y: 0
             MDCard:
                 size_hint_x: .9
-                size_hint_y: .8
+                size_hint_y: .6
                 pos_hint: {"center_x": .50, "center_y": .8}
-                elevation: 2 #Shadow
+                elevation: 2  # Shadow
                 padding: ('25dp', '25dp', '25dp', '25dp')
-                spacing:40
+                spacing: 10
                 orientation: 'vertical'
+
                 MDLabel:
-                    id:trabajo_neto
-                    text: "0"
+                    text: "Entalpias"
+                    id: Data_input_label
                     font_size: 25
                     halign: "center"
                     size_hint_y: None
                     height: self.texture_size[1]
                     padding_y: 15
-                MDLabel:
-                    id:Data_input_label
-                    text: "Trabajo Neto"
-                    font_size: 25
-                    halign: "center"
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    padding_y: 15
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: 5
+                    padding: 10
+
+                    # Show enthalpies from 1 to 9 with labels
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            id: h1_valor
+                            text: "H1 : valor_H1"
+                            font_size: 20
+                            halign: "center"
+
+                        MDLabel:
+                            id: h2_valor
+                            text: "H2 : valor_H2"
+                            font_size: 20
+                            halign: "center"
+
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            id: h1_valor
+                            text: "H1 : valor_H1"
+                            font_size: 20
+                            halign: "center"
+
+                        MDLabel:
+                            id: h2_valor
+                            text: "H2 : valor_H2"
+                            font_size: 20
+                            halign: "center"
+
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            id: h1_valor
+                            text: "H1 : valor_H1"
+                            font_size: 20
+                            halign: "center"
+
+                        MDLabel:
+                            id: h2_valor
+                            text: "H2 : valor_H2"
+                            font_size: 20
+                            halign: "center"
+
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            id: h1_valor
+                            text: "H1 : valor_H1"
+                            font_size: 20
+                            halign: "center"
+
+                        MDLabel:
+                            id: h2_valor
+                            text: "H2 : valor_H2"
+                            font_size: 20
+                            halign: "center"
+
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            id: h1_valor
+                            text: "H1 : valor_H1"
+                            font_size: 20
+                            halign: "center"
+
+                        MDLabel:
+                            id: h2_valor
+                            text: "H2 : valor_H2"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            id: h1_valor
+                            text: "H1 : valor_H1"
+                            font_size: 20
+                            halign: "center"
+
+                        MDLabel:
+                            id: h2_valor
+                            text: "H2 : valor_H2"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            id: h1_valor
+                            text: "H1 : valor_H1"
+                            font_size: 20
+                            halign: "center"
+
+                        MDLabel:
+                            id: h2_valor
+                            text: "H2 : valor_H2"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            id: h1_valor
+                            text: "H1 : valor_H1"
+                            font_size: 20
+                            halign: "center"
+
+                        MDLabel:
+                            id: h2_valor
+                            text: "H2 : valor_H2"
+                            font_size: 20
+                            halign: "center"
+
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            id: h1_valor
+                            text: "H1 : valor_H1"
+                            font_size: 20
+                            halign: "center"
+
+                        MDLabel:
+                            id: h2_valor
+                            text: "H2 : valor_H2"
+                            font_size: 20
+                            halign: "center"

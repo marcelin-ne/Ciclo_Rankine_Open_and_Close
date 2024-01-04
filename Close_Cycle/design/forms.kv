@@ -27,7 +27,6 @@ Screen:
                 id: logo_nbox
                 size_hint: 1, None
                 size_hint_y: .2
-
                 orientation: 'vertical'
                 padding: ('10dp', '8dp', '12dp', '8dp')
                 spacing: dp(8)
@@ -45,9 +44,11 @@ Screen:
                                 pos: self.pos
                                 size: self.size
                         id: logo_box
-                        Label:
+                        MDLabel:
                             text: 'Facultad de Ing Mecánica'
                             color: rgba('#000000')
+                            halign: "center"
+                            texture_size: self.size
 
                 BoxLayout:
                     id: entry_form
@@ -181,12 +182,11 @@ Screen:
         BoxLayout:
             size_hint_x: .5
             spacing: dp(12)
-            width: dp(100)
             orientation: 'vertical'
-            padding: ('10dp', '8dp', '12dp', '8dp')
+            padding: ('15dp', '15dp', '15dp', '15dp')
             canvas.before:
                 Color:
-                    rgba: rgba('#FEFBEA')
+                    rgba: rgba('#AECCAA')
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -194,9 +194,9 @@ Screen:
                 size_hint_x: .9
                 size_hint_y: .1
                 width: dp(50)
-                pos_hint: {"center_x": .50, "center_y": .3}
+                # pos_hint: {"center_x": .50, "center_y": .3}
                 elevation: 12 #Shadow
-                padding: ('25dp', '25dp', '0dp', '0dp')
+                # padding: ('25dp', '25dp', '0dp', '0dp')
                 spacing:40
                 orientation: 'vertical'
                 style:"filled"
@@ -205,14 +205,24 @@ Screen:
                 shadow_softness: 12
                 shadow_offset: 0, 1
                 orientation: 'horizontal'
+                canvas.before:
+                    Color:
+                        rgba: rgba('#FECCAA')
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
                 BoxLayout:
-                    # size_hint: None, None
-                    # size: dp(50),dp(10)
-                    size_hint_x: .5
-                    pos_hint: {"center_x": .50, "center_y": .8}
+                    size_hint:1 , None
+                    size_hint_y: .3
                     id: logo_box
                     orientation: 'vertical'
                     spacing: dp(5)
+                    canvas.before:
+                        Color:
+                            rgba: rgba('#F8C8EF')
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
                     MDLabel:
                         id:Data_input_label
                         text: "Ciclo Ideal Rankine"
@@ -235,46 +245,49 @@ Screen:
                         font_name: 'Roboto-Regular'
                         font_size:13
                         font_letter_spacing: 1.5
-                Image:
-                    source: 'draw.png'  # Reemplaza con la ruta de tu imagen
-                    # allow_stretch: True
-                    # keep_ratio: False
-                    size_hint: None, None
-                    size: 10, 15
-                    pos_hint: {"center_x": .50, "center_y": .8}
             BoxLayout:
-                id:draw_card
-                size_hint_x: .9
-                pos_hint: {"center_x": .50, "center_y": .8}
-                elevation: 2 #Shadow
-                # padding: ('25dp', '25dp', '25dp', '25dp')
-                # spacing:40
+                size_hint_y: 1
                 orientation: 'vertical'
-                style:"filled"
-                # md_bg_color: "#FEF3C5"
-                shadow_color: 1, 0.5, 0, 0.8
-                shadow_softness: 12
-                shadow_offset: 0, 1
+                spacing: dp(5)
+                canvas.before:
+                    Color:
+                        rgba: rgba('#C8F8EF')
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
                 BoxLayout:
+                    id:draw_card
+                    size_hint_x: .9
+                    pos_hint: {"center_x": .50, "center_y": .8}
+                    elevation: 2 #Shadow
+                    # padding: ('25dp', '25dp', '25dp', '25dp')
+                    # spacing:40
                     orientation: 'vertical'
-                    id: main_box  # Asigna un ID al BoxLayout principal
-                    LineDrawer:
-                        id: line_drawer  # Asigna un ID al LineDrawer
-                    Image:
-                        source:'../images/Ciclo_rakine_1.png'
-                        # Reemplaza con la ruta de tu imagen
-                        size_hint: None,None
-                        size:800, 1000  # Ajusta estos valores según tus necesidades
-                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
-                        border: 5, 5, 5, 5  # Ajusta estos valores según el ancho del borde que desees
-                        #Add border 
-                        canvas.before:
-                            Color:
-                                rgba: rgba('#aaaaaa')
-                            Line:
-                                width: 2
-                                rectangle: (self.x-70, self.y, self.width+140, self.height+10)
-        #Col 3 Results cards
+                    style:"filled"
+                    # md_bg_color: "#FEF3C5"
+                    shadow_color: 1, 0.5, 0, 0.8
+                    shadow_softness: 12
+                    shadow_offset: 0, 1
+                    BoxLayout:
+                        orientation: 'vertical'
+                        id: main_box  # Asigna un ID al BoxLayout principal
+                        LineDrawer:
+                            id: line_drawer  # Asigna un ID al LineDrawer
+                        Image:
+                            source:'../images/Ciclo_rakine_1.png'
+                            # Reemplaza con la ruta de tu imagen
+                            size_hint: None,None
+                            size:500, 800  # Ajusta estos valores según tus necesidades
+                            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                            border: 5, 5, 5, 5  # Ajusta estos valores según el ancho del borde que desees
+                            #Add border 
+                            canvas.before:
+                                Color:
+                                    rgba: rgba('#aaaaaa')
+                                Line:
+                                    width: 2
+                                    rectangle: (self.parent.x,  self.parent.y, self.parent.width, self.parent.height-25)
+            #Col 3 Results cards
         BoxLayout:
             size_hint_x: .2
             spacing: dp(8)
@@ -282,7 +295,7 @@ Screen:
             padding: ('10dp', '8dp', '12dp', '8dp')
             canvas.before:
                 Color:
-                    # rgba: rgba('#CBD0EB')
+                    rgba: rgba('#FE4FEB')
                 Rectangle:
                     pos: self.pos
                     size: self.size

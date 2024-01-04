@@ -32,7 +32,7 @@ from line_drawer import LineDrawer
         
 class MainApp(MDApp):
     def build(self):
-        Window.size = (1150, 600)
+        # Window.size = (1150, 600)
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Orange"
         self.theme_cls.accent_palette = "Red"
@@ -41,10 +41,12 @@ class MainApp(MDApp):
         # Cargar el archivo KV después de que los widgets estén construidos
         Builder.load_file('../design/forms.kv')
         self.hs= {}
-        # self.line_drawer = LineDrawer()
-        # self.layout.add_widget(self.button)
-        # self.layout.add_widget(self.line_drawer)
-        #return self.layout
+        
+        #Definig the windows dimentions
+        # Establecer dimensiones mínimas y máximas para la ventana
+        Window.minimum_width, Window.minimum_height = 1200, 300
+        Window.maximum_width, Window.maximum_height = 1300, 400
+
         return Builder.load_file('../design/forms.kv')
 
 

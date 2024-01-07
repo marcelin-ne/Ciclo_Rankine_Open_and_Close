@@ -81,57 +81,37 @@ class MainApp(MDApp):
     def redraw_based_on_hs(self, hs):
         line_drawer = self.root.ids.line_drawer
         #h1a
-        # self.line_drawer.animate_lines_horizontal('h1', hs['h1'])
+        line_drawer.animate_lines_horizontal('h1a', hs['h1'])
         #h2
-        line_drawer.animate_lines_horizontal('h2a', hs['h2'])
-        #h2b
-        new_point=line_drawer.get_line_coordinate('h2a', 0)
-        line_drawer.animate_lines_grow_positive('h2b', new_point, 1)
+        line_drawer.animate_lines_grow_and_shift_positive_negative('h2a', 'h2b', hs['h2'], 1)
         #h3
-        line_drawer.animate_lines_horizontal('h3a', hs['h3'])
-        #h3b
-        new_point=line_drawer.get_line_coordinate('h3a', 0)
-        line_drawer.animate_lines_grow_positive('h3b', new_point, 1)
+        line_drawer.animate_lines_grow_and_shift_positive_negative('h3a', 'h3b', hs['h3'], 1)
         #h4
-        line_drawer.animate_lines_horizontal('h4a', hs['h4'])
-        #h4b
-        new_point=line_drawer.get_line_coordinate('h4a', 0)
-        line_drawer.animate_lines_grow_negative('h4b', new_point, 1)
+        line_drawer.animate_lines_grow_and_shift_negative('h4a', 'h4b', -hs['h4'], 1)
         #h5
-        line_drawer.animate_lines_horizontal('h5a', hs['h5'])
+        line_drawer.animate_lines_horizontal('h5a', -hs['h5'])
         #h6
-        line_drawer.animate_lines_horizontal('h6a', hs['h6'])
-        #h6b
-        new_point=line_drawer.get_line_coordinate('h6a', 0)
-        line_drawer.animate_lines_grow_negative('h6b', new_point, 1)
-        # self.line_drawer.animate_lines_horizontal('h6b', hs['h6'])
+        line_drawer.animate_lines_grow_and_shift_negative_positive('h6a', 'h6b', hs['h6'], 1)
         #h7
-        line_drawer.animate_lines_horizontal('h7a', hs['h7'])
-        #h7b
-        new_point=line_drawer.get_line_coordinate('h7a', 0)
-        line_drawer.animate_lines_grow_positive('h7b', new_point, 1)
+        line_drawer.animate_lines_grow_and_shift_positive('h7a', 'h7b', hs['h7'], 1)
         #h8
-        line_drawer.animate_lines_horizontal('h8a', hs['h8'])
-        #h8b
-        new_point=line_drawer.get_line_coordinate('h8a', 0)
-        line_drawer.animate_lines_grow_positive('h8b', new_point, 1)
+        line_drawer.animate_lines_grow_and_shift_positive('h8a', 'h8b', hs['h8'], 1)
         #h9
-        line_drawer.animate_lines_horizontal('h9a', hs['h9'])
-        #h9b
-        new_point=line_drawer.get_line_coordinate('h9a', 0)
-        line_drawer.animate_lines_grow_negative('h9b', new_point, 1)
-        # #3h7
-        # self.line_drawer.draw_line_connecting_two_lines('h3a', 'h7a', '3h7')
+        line_drawer.animate_lines_grow_and_shift_negative('h9a', 'h9b', -hs['h9'], 1)
+        #3h7
+        line_drawer.draw_line_connecting_two_lines('h3a', 'h7a', '7h3')
         # #1h2
-        # self.line_drawer.draw_line_connecting_two_lines('h2a', 'h1a', '1h2')
+        line_drawer.draw_line_connecting_two_lines('h2a', 'h1a', '1h2')
         # #5h6
-        # self.line_drawer.draw_line_connecting_two_lines('h5a', 'h6a', '5h6')
+        line_drawer.draw_line_connecting_two_lines('h5a', 'h6a', '5h6')
         # #4h5
-        # self.line_drawer.draw_line_connecting_two_lines('h4a', 'h5a', '4h5')
+        line_drawer.draw_line_connecting_two_lines('h4a', 'h5a', '4h5')
         # #9h5
-        # self.line_drawer.draw_line_connecting_two_lines('h9a', 'h5a', '9h5')
+        line_drawer.draw_line_connecting_two_lines('h9a', 'h5a', '9h5')
         # #1h8
-        # self.line_drawer.draw_line_connecting_two_lines('h1a', 'h8a', '1h8')
+        line_drawer.draw_line_connecting_two_lines('h1a', 'h8a', '1h8')
+        # #Connect h9a and h9b
+        # line_drawer.animate_and_connect_lines_vertical('h9a', 'h9b')
 
     def resolve(self):
         #Restart the lines
@@ -158,8 +138,19 @@ class MainApp(MDApp):
             print(cr_close.results)
 
         # Actualizar etiquetas en el archivo kv
-            self.root.ids.eficiencia_termica.text = f"{cr_close.results['eta']} %"
-            self.root.ids.trabajo_neto.text = f"{cr_close.results['wturb']} kJ/kg"
+            self.root.ids.eficiencia_termica_result.text = f"{cr_close.results['eta']} "
+            self.root.ids.trabajo_neto.text = f"{cr_close.results['wturb']}"
+        
+        # Actualizar el valor de hs
+            self.root.ids.h1_valor.text = f"{cr_close.hs['h1']} "
+            self.root.ids.h2_valor.text = f"{cr_close.hs['h2']} "
+            self.root.ids.h3_valor.text = f"{cr_close.hs['h3']} "
+            self.root.ids.h4_valor.text = f"{cr_close.hs['h4']} "
+            self.root.ids.h5_valor.text = f"{cr_close.hs['h5']} "
+            self.root.ids.h6_valor.text = f"{cr_close.hs['h6']} "
+            self.root.ids.h7_valor.text = f"{cr_close.hs['h7']} "
+            self.root.ids.h8_valor.text = f"{cr_close.hs['h8']} "
+            self.root.ids.h9_valor.text = f"{cr_close.hs['h9']} "
 
         # Transformar hs utilizando el objeto Delimiter
             hs = delimeter.transform_to_distance(cr_close.hs)

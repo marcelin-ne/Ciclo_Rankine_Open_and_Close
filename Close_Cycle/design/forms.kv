@@ -18,7 +18,8 @@ Screen:
             spacing: dp(8)
             canvas.before:
                 Color:
-                    rgba: rgba('#E3C1E6')
+                    #Add orange color base
+                    rgba: rgba('#EEE0FF')
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -34,16 +35,9 @@ Screen:
                     anchor_x: 'right'
                     # size_hint_x: None
                     # width: .5 * self.parent.width
-                    size_hint_y: .2
+                    size_hint_y: .1
                     height: dp(50)
                     BoxLayout:
-                        canvas.before:
-                            Color:
-                                rgba: rgba('#e0FF1a')
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                        id: logo_box
                         MDLabel:
                             text: 'Facultad de Ing Mecánica'
                             color: rgba('#000000')
@@ -55,14 +49,14 @@ Screen:
                     orientation: 'vertical'
                     padding: ('20dp', '20dp', '20dp', '20dp')
                     spacing: dp(11)
-                    size_hint_y: .6
+                    size_hint_y: .7
                     # height: dp(50)
-                    canvas.before:
-                        Color:
-                            rgba: rgba('#e1Feea')
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
+                    # canvas.before:
+                    #     Color:
+                    #         rgba: rgba('#e1Feea')
+                    #     Rectangle:
+                    #         pos: self.pos
+                    #         size: self.size
                     MDLabel:
                         text: "Datos de entrada"
                         halign: "center"
@@ -72,9 +66,10 @@ Screen:
                         font_name: 'Roboto-Bold'
                     MDTextField:
                         id:p1
-                        height: .1 * self.parent.height
+                        height: .13 * self.parent.height
                         icon_left: "thermometer"
                         hint_text: "Presión en el condensador kPa"
+                        hint_text_font_size: "500sp"
                         icon_left_color_focus: "orange"
                         mode: "rectangle"
                         helper_text: "Min 3 - Max :30 "
@@ -86,7 +81,7 @@ Screen:
                         id:p2
                         mode: "rectangle"
                         width: "250dp"
-                        height: .1 * self.parent.height
+                        height: .13 * self.parent.height
                         font_size: "15sp" 
                         icon_left: "car-brake-low-pressure"
                         hint_text: "Presión de entrada de la turbina kPa"
@@ -100,7 +95,7 @@ Screen:
                         id:p3
                         mode: "rectangle"
                         width: "250dp"
-                        height: .1 * self.parent.height
+                        height: .13 * self.parent.height
                         font_size: "15sp" 
                         icon_left: "engine-outline"
                         hint_text: "Presión de extracción kPa"
@@ -113,7 +108,7 @@ Screen:
                         id:t6
                         mode: "rectangle"
                         width: "245dp"
-                        height: .1 * self.parent.height
+                        height: .13 * self.parent.height
                         font_size: "15sp" 
                         icon_left: "hvac"
                         hint_text: "Temperatura en la salida de la caldera / entrada"
@@ -126,7 +121,7 @@ Screen:
                         id:nb
                         mode: "rectangle"
                         width: "250dp"
-                        height: .1 * self.parent.height
+                        height: .13 * self.parent.height
                         font_size: "15sp" 
                         icon_left: "dots-circle"
                         hint_text: "Eficiencia de la bomba %"
@@ -136,11 +131,11 @@ Screen:
                     MDTextField:
                         id:nt
                         mode: "rectangle"
-                        width: "250dp"
-                        height: .1 * self.parent.height
-                        font_size: "15sp"
+                        height: .13 * self.parent.height
+                        hint_text_size: "5sp"
                         icon_left: "dots-square"
                         hint_text: "Eficiencia de la turbina %"
+                        font_size: "15sp"
                         icon_right_color_focus: "red"
                         helper_text: "Min 0.2 - Max :1"
                         helper_text_mode: "on_focus"
@@ -148,7 +143,7 @@ Screen:
 
                 BoxLayout:
                     id: buttons
-                    padding: ('100dp', '8dp', '12dp', '8dp')
+                    padding: ('20dp', '8dp', '12dp', '8dp')
                     spacing: dp(11)
                     size_hint: None, None
                     size_hint_y: .1
@@ -184,12 +179,12 @@ Screen:
             spacing: dp(12)
             orientation: 'vertical'
             padding: ('15dp', '15dp', '15dp', '15dp')
-            canvas.before:
-                Color:
-                    rgba: rgba('#AECCAA')
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
+            # canvas.before:
+            #     Color:
+            #         rgba: rgba('#AECCAA')
+            #     Rectangle:
+            #         pos: self.pos
+            #         size: self.size
             BoxLayout:
                 size_hint_x: .9
                 size_hint_y: .1
@@ -205,24 +200,24 @@ Screen:
                 shadow_softness: 12
                 shadow_offset: 0, 1
                 orientation: 'horizontal'
-                canvas.before:
-                    Color:
-                        rgba: rgba('#FECCAA')
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
+                # canvas.before:
+                #     Color:
+                #         rgba: rgba('#FECCAA')
+                #     Rectangle:
+                #         pos: self.pos
+                #         size: self.size
                 BoxLayout:
                     size_hint:1 , None
                     size_hint_y: .3
                     id: logo_box
                     orientation: 'vertical'
                     spacing: dp(5)
-                    canvas.before:
-                        Color:
-                            rgba: rgba('#F8C8EF')
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
+                    # canvas.before:
+                    #     Color:
+                    #         rgba: rgba('#F8C8EF')
+                    #     Rectangle:
+                    #         pos: self.pos
+                    #         size: self.size
                     MDLabel:
                         id:Data_input_label
                         text: "Ciclo Ideal Rankine"
@@ -249,12 +244,12 @@ Screen:
                 size_hint_y: 1
                 orientation: 'vertical'
                 spacing: dp(5)
-                canvas.before:
-                    Color:
-                        rgba: rgba('#C8F8EF')
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
+                # canvas.before:
+                #     Color:
+                #         rgba: rgba('#C8F8EF')
+                #     Rectangle:
+                #         pos: self.pos
+                #         size: self.size
                 BoxLayout:
                     id:draw_card
                     size_hint_x: .9
@@ -273,12 +268,13 @@ Screen:
                         id: main_box  # Asigna un ID al BoxLayout principal
                         LineDrawer:
                             id: line_drawer  # Asigna un ID al LineDrawer
+                            pos_hint: {'center_x': .6, 'center_y': .6}
                         Image:
                             source:'../images/Ciclo_rakine_1.png'
                             # Reemplaza con la ruta de tu imagen
                             size_hint: None,None
                             size:500, 800  # Ajusta estos valores según tus necesidades
-                            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                            pos_hint: {'center_x': .45, 'center_y': .45}
                             border: 5, 5, 5, 5  # Ajusta estos valores según el ancho del borde que desees
                             #Add border 
                             canvas.before:
@@ -286,7 +282,7 @@ Screen:
                                     rgba: rgba('#aaaaaa')
                                 Line:
                                     width: 2
-                                    rectangle: (self.parent.x,  self.parent.y, self.parent.width, self.parent.height-25)
+                                    rectangle: (self.parent.x-30,  self.parent.y, self.parent.width, self.parent.height-25)
             #Col 3 Results cards
         BoxLayout:
             size_hint_x: .2
@@ -295,7 +291,7 @@ Screen:
             padding: ('10dp', '8dp', '12dp', '8dp')
             canvas.before:
                 Color:
-                    rgba: rgba('#FE4FEB')
+                    rgba: rgba('#EEE0FF')
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -310,9 +306,9 @@ Screen:
             MDCard:
                 size_hint_x: .9
                 size_hint_y: None
-                height: .1 * self.parent.height
+                height: .15 * self.parent.height
                 pos_hint: {"center_x": .50, "center_y": .8}
-                elevation: 1 #Shadow
+                elevation: 0.5 #Shadow
                 padding: ('25dp', '25dp', '25dp', '25dp')
                 spacing:2
                 orientation: 'horizontal'
@@ -336,14 +332,14 @@ Screen:
                     padding: ('10dp', '0dp', '0dp', '0dp')
                     MDLabel:
                         id:Data_input_label
-                        text: "Y Resultado"
+                        text: "Trabajo Neto"
                         font_size: 12
                         halign: "left"
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding_y: 0
                     MDLabel:
-                        id:Y_result
+                        id:trabajo_neto
                         text: "2453"
                         font_size: 25
                         halign: "left"
@@ -353,7 +349,7 @@ Screen:
                         padding_y: 0
                     MDLabel:
                         id:Data_input_label
-                        text: "Unidades de Calculo "
+                        text: "kJ/kg"
                         font_size: 12
                         halign: "left"
                         size_hint_y: None
@@ -365,14 +361,14 @@ Screen:
                     padding: ('10dp', '0dp', '0dp', '0dp')
                     MDLabel:
                         id:Data_input_label
-                        text: "Y Resultado"
+                        text: "Eficiencia Térmica"
                         font_size: 12
                         halign: "left"
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding_y: 0
                     MDLabel:
-                        id:Y_result
+                        id:eficiencia_termica_result
                         text: "2453"
                         font_size: 25
                         halign: "left"
@@ -382,7 +378,7 @@ Screen:
                         padding_y: 0
                     MDLabel:
                         id:Data_input_label
-                        text: "Unidades de Calculo "
+                        text: "%"
                         font_size: 12
                         halign: "left"
                         size_hint_y: None
@@ -391,10 +387,9 @@ Screen:
             MDCard:
                 size_hint_x: .9
                 size_hint_y: None
-                height: .1 * self.parent.height
-
+                height: .15 * self.parent.height
                 pos_hint: {"center_x": .50, "center_y": .8}
-                elevation: 1 #Shadow
+                elevation: 0.5 #Shadow
                 padding: ('25dp', '25dp', '25dp', '25dp')
                 spacing:2
                 orientation: 'horizontal'
@@ -418,14 +413,14 @@ Screen:
                     padding: ('10dp', '0dp', '0dp', '0dp')
                     MDLabel:
                         id:Data_input_label
-                        text: "Y Resultado"
+                        text: "y"
                         font_size: 12
                         halign: "left"
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding_y: 0
                     MDLabel:
-                        id:Y_result
+                        id:y_result
                         text: "2453"
                         font_size: 25
                         halign: "left"
@@ -435,7 +430,7 @@ Screen:
                         padding_y: 0
                     MDLabel:
                         id:Data_input_label
-                        text: "Unidades de Calculo "
+                        text: ""
                         font_size: 12
                         halign: "left"
                         size_hint_y: None
@@ -447,14 +442,14 @@ Screen:
                     padding: ('10dp', '0dp', '0dp', '0dp')
                     MDLabel:
                         id:Data_input_label
-                        text: "Eficiencia Termica"
+                        text: "y-1"
                         font_size: 12
                         halign: "left"
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding_y: 0
                     MDLabel:
-                        id:eficiencia_termica
+                        id:y_1_result
                         text: "2453"
                         font_size: 25
                         halign: "left"
@@ -464,7 +459,7 @@ Screen:
                         padding_y: 0
                     MDLabel:
                         id:Data_input_label
-                        text: "Unidades de Calculo "
+                        text: ""
                         font_size: 12
                         halign: "left"
                         size_hint_y: None
@@ -474,7 +469,7 @@ Screen:
                 size_hint_x: .9
                 size_hint_y: .6
                 pos_hint: {"center_x": .50, "center_y": .8}
-                elevation: 2  # Shadow
+                elevation: 0.5  # Shadow
                 padding: ('25dp', '25dp', '25dp', '25dp')
                 spacing: 10
                 orientation: 'vertical'
@@ -499,78 +494,12 @@ Screen:
                         spacing: 5
                         padding: 10
                         MDLabel:
-                            id: h1_valor
-                            text: "H1 : valor_H1"
+                            text: "H1:"
                             font_size: 20
-                            halign: "center"
-
-                        MDLabel:
-                            id: h2_valor
-                            text: "H2 : valor_H2"
-                            font_size: 20
-                            halign: "center"
-
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        spacing: 5
-                        padding: 10
+                            halign: "left"
                         MDLabel:
                             id: h1_valor
-                            text: "H1 : valor_H1"
-                            font_size: 20
-                            halign: "center"
-
-                        MDLabel:
-                            id: h2_valor
-                            text: "H2 : valor_H2"
-                            font_size: 20
-                            halign: "center"
-
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        spacing: 5
-                        padding: 10
-                        MDLabel:
-                            id: h1_valor
-                            text: "H1 : valor_H1"
-                            font_size: 20
-                            halign: "center"
-
-                        MDLabel:
-                            id: h2_valor
-                            text: "H2 : valor_H2"
-                            font_size: 20
-                            halign: "center"
-
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        spacing: 5
-                        padding: 10
-                        MDLabel:
-                            id: h1_valor
-                            text: "H1 : valor_H1"
-                            font_size: 20
-                            halign: "center"
-
-                        MDLabel:
-                            id: h2_valor
-                            text: "H2 : valor_H2"
-                            font_size: 20
-                            halign: "center"
-
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        spacing: 5
-                        padding: 10
-                        MDLabel:
-                            id: h1_valor
-                            text: "H1 : valor_H1"
-                            font_size: 20
-                            halign: "center"
-
-                        MDLabel:
-                            id: h2_valor
-                            text: "H2 : valor_H2"
+                            text: "Valor h1"
                             font_size: 20
                             halign: "center"
                     BoxLayout:
@@ -578,14 +507,12 @@ Screen:
                         spacing: 5
                         padding: 10
                         MDLabel:
-                            id: h1_valor
-                            text: "H1 : valor_H1"
+                            text: "H2 : "
                             font_size: 20
-                            halign: "center"
-
+                            halign: "left"
                         MDLabel:
                             id: h2_valor
-                            text: "H2 : valor_H2"
+                            text: "valor_H2"
                             font_size: 20
                             halign: "center"
                     BoxLayout:
@@ -593,14 +520,12 @@ Screen:
                         spacing: 5
                         padding: 10
                         MDLabel:
-                            id: h1_valor
-                            text: "H1 : valor_H1"
+                            text: "H3: "
                             font_size: 20
-                            halign: "center"
-
+                            halign: "left"
                         MDLabel:
-                            id: h2_valor
-                            text: "H2 : valor_H2"
+                            id: h3_valor
+                            text: "Valor_H3"
                             font_size: 20
                             halign: "center"
                     BoxLayout:
@@ -608,29 +533,77 @@ Screen:
                         spacing: 5
                         padding: 10
                         MDLabel:
-                            id: h1_valor
-                            text: "H1 : valor_H1"
+                            text: "H4:"
                             font_size: 20
-                            halign: "center"
-
+                            halign: "left"
                         MDLabel:
-                            id: h2_valor
-                            text: "H2 : valor_H2"
+                            id: h4_valor
+                            text: "Valor h4"
                             font_size: 20
                             halign: "center"
-
                     BoxLayout:
                         orientation: 'horizontal'
                         spacing: 5
                         padding: 10
                         MDLabel:
-                            id: h1_valor
-                            text: "H1 : valor_H1"
+                            text: "H5 : "
                             font_size: 20
-                            halign: "center"
+                            halign: "left"
 
                         MDLabel:
-                            id: h2_valor
-                            text: "H2 : valor_H2"
+                            id: h5_valor
+                            text: "Valor h5"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "H6 :"
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h6_valor
+                            text: "H6 valor"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "H7 : "
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h7_valor
+                            text: "valor h7"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "H8 :"
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h8_valor
+                            text: "Valor h8"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "H9 : "
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h9_valor
+                            text: "Valor H9 "
                             font_size: 20
                             halign: "center"

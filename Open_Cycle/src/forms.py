@@ -14,6 +14,9 @@ class MainApp(MDApp):
         #light theme
         self.theme_cls.primary_palette = "Amber"
         self.theme_cls.accent_palette = "Red"
+
+        Window.minimum_width, Window.minimum_height = 1200, 300
+        Window.maximum_width, Window.maximum_height = 1300, 400
         return Builder.load_file('../desing/forms.kv')
         # return Builder.load_file('forms.kv')
     def login(self):
@@ -43,6 +46,15 @@ class MainApp(MDApp):
         self.root.ids.wneto.text = str(ciclo_rankine.results['wneto'])
         # Eficiencia del Ciclo
         self.root.ids.n.text= str(ciclo_rankine.results['n'])
+
+        #Entalpias result 
+        self.root.ids.h1_valor.text = str(ciclo_rankine.hs['h1'])
+        self.root.ids.h2_valor.text = str(ciclo_rankine.hs['h2'])
+        self.root.ids.h3_valor.text = str(ciclo_rankine.hs['h3'])
+        self.root.ids.h4_valor.text = str(ciclo_rankine.hs['h4'])
+        self.root.ids.h5_valor.text = str(ciclo_rankine.hs['h5'])
+        self.root.ids.h6_valor.text = str(ciclo_rankine.hs['h6'])
+        self.root.ids.h7_valor.text = str(ciclo_rankine.hs['h7'])
 
         #Entalpia bard long
         #self.root.ids.h1.value = str(ciclo_rankine.hs['h1'])

@@ -18,19 +18,11 @@ MDScreen:
                 spacing: '10dp'
                 padding: '10dp'
                 MDLabel:
-                    text: "Ciclo Rankine"
+                    text: "CICLO RANKINE CON PRECALENTADOR ABIERTO DE AGUA DE ALIMENTACIÓN"
                     halign: 'left'
-                    font_style: 'H4'
+                    font_style: 'H5'
                     theme_text_color: 'Custom'
                     text_color: 1, 1, 1, 1
-                MDLabel:
-                    #This text is a subtitle, give it a style
-                    text: "Con precalentador abierto de agua de alimentacion"
-                    halign: 'left'
-                    font_style: 'H6'
-                    theme_text_color: 'Custom'
-                    text_color: 1, 1, 1, 1
-
             # Result
             MDBoxLayout:
                 orientation: 'vertical'
@@ -39,7 +31,7 @@ MDScreen:
                 padding: '10dp'
                 size_hint_x:0.3
                 MDLabel:
-                    text: "Calor de Entrada"
+                    text: "Calor Añadido (kJ/kg))"
                 MDLabel:
                     id:qin
                     text: "100"
@@ -51,7 +43,7 @@ MDScreen:
                 padding: '10dp'
                 size_hint_x:0.3
                 MDLabel:
-                    text: "Calor de Salida"
+                    text: "Calor Rechazado (kJ/kg))"
                 MDLabel:
                     id:qout
                     text: "100"
@@ -62,7 +54,7 @@ MDScreen:
                 padding: '10dp'
                 size_hint_x:0.3
                 MDLabel:
-                    text: "Calor en el Intercambiador"
+                    text: "Calor Intercambiador (kJ/kg)"
                     halign: "center"
                     theme_text_color: "Custom"
                     text_color: 1, 1, 1, 1
@@ -82,12 +74,12 @@ MDScreen:
             # forms
             MDBoxLayout:
                 orientation:'vertical'
-                size_hint_x: 0.3
+                size_hint_x: 0.2
                 spacing:10
                 MDBoxLayout:
                     orientation: 'vertical'
-                    padding: ('5dp', '5dp', '5dp', '5dp')
-                    spacing:40
+                    padding: ('15dp', '5dp', '15dp', '5dp')
+                    spacing:30
                     size_hint_y:0.9
                     MDLabel:
                         id:Data_input_label
@@ -99,56 +91,70 @@ MDScreen:
                         padding_y: 5
                     MDTextField:
                         id:Pbbp
-                        size_hint_x: 0.95
-                        hint_text: "Presion de la bomba de baja presion (KPa)"
+                        height: .1 * self.parent.height
+                        hint_text: "Presión baja (kPa)"
                         mode: "fill"
                         helper_text: "Massage"
                         icon_right: "eye-off"
                         icon_right_color_focus: "orange"
+                        font_size: 18
+                        input_filter: "float"
                     MDTextField:
                         id:Pbap
-                        size_hint_x: 0.95
-                        hint_text: "Presion de la bomba de alta presion (KPa)"
+                        height: .1 * self.parent.height
+                        hint_text: "Presión alta presion (kPa)"
                         mode: "fill"
                         helper_text: "Massage"
                         icon_right: "eye-off"
                         icon_right_color_focus: "orange"
+                        font_size: 18
+                        input_filter: "float"
                     MDTextField:
                         id:Psal_cald
-                        size_hint_x: 0.95
-                        hint_text: "Presión a la salida de la caldera"
+                        height: .1 * self.parent.height
+                        hint_text: "Presión de salida (kPa)"
                         mode: "fill"
                         max_text_length: 15
                         helper_text: "Massage"
                         icon_right: "eye-off"
                         icon_right_color_focus: "orange"
+                        font_size: 18
+                        input_filter: "float"
                     MDTextField:
                         id:Tsal_cald
-                        size_hint_x: 0.95
-                        hint_text: "Tempratura a la salida de la caldera (°C)"
+                        height: .1 * self.parent.height
+                        hint_text: "Temperatura de salida (°C)"
                         mode: "fill"
                         max_text_length: 15
                         helper_text: "Massage"
                         icon_right: "eye-off"
                         icon_right_color_focus: "orange"
+                        font_size: 18
+                        input_filter: "float"
                     MDTextField:
                         id:ns_bomba
-                        size_hint_x: 0.95
-                        hint_text: "Eficiencia bomba isentropica"
+                        height: .1 * self.parent.height
+                        hint_text: "Eficiencia isentrópica bomba"
                         mode: "fill"
                         max_text_length: 15
                         helper_text: "Massage"
                         icon_right: "percent-outline"
                         icon_right_color_focus: "orange"
+                        font_size: 18
+                        input_filter: "float"
                     MDTextField:
                         id:ns_turb
-                        size_hint_x: 0.95
-                        hint_text: "Eficiencia turbina isentropicas"
+                        # size_hint_x: 0.95
+                        height: .1 * self.parent.height
+                        font_size: 20
+                        hint_text: "Eficiencia isentrópicas turbina "
                         mode: "fill"
                         max_text_length: 15
                         helper_text: "Massage"
                         icon_right: "percent-outline"
                         icon_right_color_focus: "orange"
+                        font_size: 18
+                        input_filter: "float"
                 MDBoxLayout:
                     orientation: 'horizontal'
                     spacing: 10  # Espacio entre los botones
@@ -178,13 +184,15 @@ MDScreen:
             # Results
             MDBoxLayout:
                 orientation: 'vertical'
-                size_hint_x: 0.3
+                size_hint_x: 0.2
+                spacing:20
                 MDCard:
                     elevation: 1 #Shadow
                     padding: ('15dp', '15dp', '15dp', '15dp')
                     spacing:2
                     orientation: 'horizontal'
                     border_radius: 20
+                    size_hint: 1, None
                     border_color: 1, 0.5, 0, 0.8
                     MDFloatingActionButton:
                         icon:"pencil"
@@ -231,6 +239,7 @@ MDScreen:
                     elevation: 1 #Shadow
                     padding: ('15dp', '15dp', '15dp', '15dp')
                     spacing:2
+                    size_hint: 1, None
                     orientation: 'horizontal'
                     border_radius: 20
                     border_color: 1, 0.5, 0, 0.8
@@ -278,97 +287,102 @@ MDScreen:
                 #Entalpias 
                 MDLabel:
                     text:"Entalpias"
-                #H1
                 BoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y:0.2
-                    padding: "10dp"
-                    MDLabel:
-                        text: "H1"
-                    MDProgressBar:
-                        id: h1
-                        value: 5
-                        color: app.theme_cls.accent_color
-                #H2
-                BoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y:0.2
-                    padding: "10dp"
-                    MDLabel:
-                        text: "H2"
-                    MDProgressBar:
-                        id: h2
-                        value: 15
-                        color: app.theme_cls.accent_color
-                #H3
-                BoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y:0.2
-                    padding: "10dp"
-                    MDLabel:
-                        text: "H3"
-                    MDProgressBar:
-                        id: h3
-                        value: 50
-                        color: app.theme_cls.accent_color
-                #H4
-                BoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y:0.2
-                    padding: "10dp"
-                    MDLabel:
-                        text: "H4"
-                    MDProgressBar:
-                        id: h4
-                        value: 35
-                        color: app.theme_cls.accent_color
-                #H5
-                BoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y:0.2
-                    padding: "10dp"
-                    MDLabel:
-                        text: "H5"
-                    MDProgressBar:
-                        id: h5
-                        value: 25
-                        color: app.theme_cls.accent_color
-                #H6
-                BoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y:0.2
-                    padding: "10dp"
-                    MDLabel:
-                        text: "H6"
-                    MDProgressBar:
-                        id: h6
-                        value: 45
-                        color: app.theme_cls.accent_color
-                #H7
-                BoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y:0.2
-                    padding: "10dp"
-                    MDLabel:
-                        text: "H7"
-                    MDProgressBar:
-                        id: h7
-                        value: 5
-                        color: app.theme_cls.accent_color
-                MDLabel:
-                    text:'Fraccion de Vapor'
-                BoxLayout:
-                    orientation:'horizontal'
-                    MDLabel:
-                        text:"Y"
-                    MDLabel:
-                        id:y
-                        text:"100"
-                BoxLayout:
-                    orientation:'horizontal'
-                    MDLabel:
-                        text:"Y-1"
-                    MDLabel:
-                        id:y1
-                        text:"1000"
+                    orientation: 'vertical'
+                    spacing: 5
+                    padding: 10
 
+                    # Show enthalpies from 1 to 9 with labels
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "h1:"
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h1_valor
+                            text: "Valor h1"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "h2 : "
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h2_valor
+                            text: "valor_H2"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "h3: "
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h3_valor
+                            text: "Valor_H3"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "h4:"
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h4_valor
+                            text: "Valor h4"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "h5 : "
+                            font_size: 20
+                            halign: "left"
+
+                        MDLabel:
+                            id: h5_valor
+                            text: "Valor h5"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "h6 :"
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h6_valor
+                            text: "H6 valor"
+                            font_size: 20
+                            halign: "center"
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 5
+                        padding: 10
+                        MDLabel:
+                            text: "h7 : "
+                            font_size: 20
+                            halign: "left"
+                        MDLabel:
+                            id: h7_valor
+                            text: "valor h7"
+                            font_size: 20
+                            halign: "center"
+                    

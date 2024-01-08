@@ -17,7 +17,7 @@ class Delimiter:
         for key, value in hs.items():
             sing = self.determinate_sing(hs, key)
         # Convierte el valor a un entero dividiéndolo por 10
-            transformed_value = int(float(value) / 10) * sing
+            transformed_value = int(float(value) / 17) * sing 
         # Agrega el par clave-valor al diccionario distance
             self.distance[key] = transformed_value
         # Devuelve el diccionario distance
@@ -31,6 +31,7 @@ class Delimiter:
         else:
             # Usa el signo normal para otras claves
             return 1
+        
 
     #Return every element of the dictionary distance individually
     def get_distance(self, key):

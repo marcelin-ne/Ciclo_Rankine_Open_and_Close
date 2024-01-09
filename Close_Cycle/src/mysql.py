@@ -3,7 +3,7 @@ import pymysql
 # Configura los parámetros de conexión
 config = {
     'user': 'marcelinne',
-    'password': '121206linne',
+    'password': '121206line',
     'host': '192.168.50.11',
     'database': 'apisaas',
     'port': 3306,  # Puerto predeterminado de MariaDB

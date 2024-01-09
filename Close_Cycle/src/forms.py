@@ -76,10 +76,36 @@ class MainApp(MDApp):
             return True
         else:
             return False
+        
+    def clear(self):
+        #Clear the textfields
+        self.root.ids.p1.text = ""
+        self.root.ids.p2.text = ""
+        self.root.ids.p3.text = ""
+        self.root.ids.t6.text = ""
+        self.root.ids.nb.text = ""
+        self.root.ids.nt.text = ""
+        #Clear the labels
+        self.root.ids.eficiencia_termica_result.text = ""
+        self.root.ids.trabajo_neto.text = ""
+        #Clear the enthalpies
+        self.root.ids.h1_valor.text = ""
+        self.root.ids.h2_valor.text = ""
+        self.root.ids.h3_valor.text = ""
+        self.root.ids.h4_valor.text = ""
+        self.root.ids.h5_valor.text = ""
+        self.root.ids.h6_valor.text = ""
+        self.root.ids.h7_valor.text = ""
+        self.root.ids.h8_valor.text = ""
+        self.root.ids.h9_valor.text = ""
+        #Clear the lines
+        self.root.ids.line_drawer.redraw()
 
     #Function to redraw the lines based on hs
     def redraw_based_on_hs(self, hs):
         line_drawer = self.root.ids.line_drawer
+        #Clear the lines
+        line_drawer.redraw()
         #h1a
         line_drawer.animate_lines_horizontal('h1a', hs['h1'])
         #h2
@@ -99,19 +125,25 @@ class MainApp(MDApp):
         #h9
         line_drawer.animate_lines_grow_and_shift_negative('h9a', 'h9b', -hs['h9'], 1)
         #3h7
-        line_drawer.draw_line_connecting_two_lines('h3a', 'h7a', '7h3')
-        # #1h2
-        line_drawer.draw_line_connecting_two_lines('h2a', 'h1a', '1h2')
-        # #5h6
-        line_drawer.draw_line_connecting_two_lines('h5a', 'h6a', '5h6')
-        # #4h5
-        line_drawer.draw_line_connecting_two_lines('h4a', 'h5a', '4h5')
-        # #9h5
-        line_drawer.draw_line_connecting_two_lines('h9a', 'h5a', '9h5')
-        # #1h8
-        line_drawer.draw_line_connecting_two_lines('h1a', 'h8a', '1h8')
-        # #Connect h9a and h9b
-        # line_drawer.animate_and_connect_lines_vertical('h9a', 'h9b')
+        line_drawer.draw_line_connecting_two_lines_B('h3a', 'h7a', '7h3')
+        # 1h2
+        # line_drawer.draw_line_connecting_two_lines('h2a', 'h1a', '1h2')
+        # # 5h6
+        # line_drawer.draw_line_connecting_two_lines('h6a', 'h5a', '5h6')
+        # # 4h5
+        # line_drawer.draw_line_connecting_two_lines('h4a', 'h5a', '4h5')
+        # # 9h5
+        # line_drawer.draw_line_connecting_two_lines('h9a', 'h5a', '9h5')
+        # # 1h8
+        # line_drawer.draw_line_connecting_two_lines('h1a', 'h8a', '1h8')
+        # # 6h8
+        # line_drawer.draw_line_connecting_two_lines('h6a', 'h8a', '6h8')
+        # #2h9
+        # line_drawer.draw_line_connecting_two_lines('h2a', 'h9a', '2h9')
+        # # 3h4
+        # line_drawer.draw_line_connecting_two_lines('h3a', 'h4a', '3h4')
+
+        
 
     def resolve(self):
         #Restart the lines

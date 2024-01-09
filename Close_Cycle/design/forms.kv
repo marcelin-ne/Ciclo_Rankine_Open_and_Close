@@ -172,6 +172,7 @@ Screen:
                         size: "170dp", "50dp"
                         shadow_radius: 10
                         shadow_color: 1, 0.5, 0, 0.8
+                        on_press:app.clear()
 
         # Main Content
         BoxLayout:
@@ -269,20 +270,20 @@ Screen:
                         LineDrawer:
                             id: line_drawer  # Asigna un ID al LineDrawer
                             pos_hint: {'center_x': .6, 'center_y': .6}
-                        Image:
-                            source:'../images/Ciclo_rakine_1.png'
-                            # Reemplaza con la ruta de tu imagen
-                            size_hint: None,None
-                            size:500, 800  # Ajusta estos valores según tus necesidades
-                            pos_hint: {'center_x': .45, 'center_y': .45}
-                            border: 5, 5, 5, 5  # Ajusta estos valores según el ancho del borde que desees
-                            #Add border 
-                            canvas.before:
-                                Color:
-                                    rgba: rgba('#aaaaaa')
-                                Line:
-                                    width: 2
-                                    rectangle: (self.parent.x-30,  self.parent.y, self.parent.width, self.parent.height-25)
+                        # Image:
+                        #     source:'../images/Ciclo_rakine_1.png'
+                        #     # Reemplaza con la ruta de tu imagen
+                        #     size_hint: None,None
+                        #     size:500, 800  # Ajusta estos valores según tus necesidades
+                        #     pos_hint: {'center_x': .45, 'center_y': .45}
+                        #     border: 5, 5, 5, 5  # Ajusta estos valores según el ancho del borde que desees
+                        #     #Add border 
+                        #     canvas.before:
+                        #         Color:
+                        #             rgba: rgba('#aaaaaa')
+                        #         Line:
+                        #             width: 2
+                        #             rectangle: (self.parent.x-30,  self.parent.y, self.parent.width, self.parent.height-25)
             #Col 3 Results cards
         BoxLayout:
             size_hint_x: .2

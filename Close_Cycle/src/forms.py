@@ -124,26 +124,29 @@ class MainApp(MDApp):
         line_drawer.animate_lines_grow_and_shift_positive('h8a', 'h8b', hs['h8'], 1)
         #h9
         line_drawer.animate_lines_grow_and_shift_negative('h9a', 'h9b', -hs['h9'], 1)
-        #3h7
-        line_drawer.draw_line_connecting_two_lines_B('h3a', 'h7a', '7h3')
-        # 1h2
-        # line_drawer.draw_line_connecting_two_lines('h2a', 'h1a', '1h2')
-        # # 5h6
-        # line_drawer.draw_line_connecting_two_lines('h6a', 'h5a', '5h6')
-        # # 4h5
-        # line_drawer.draw_line_connecting_two_lines('h4a', 'h5a', '4h5')
-        # # 9h5
-        # line_drawer.draw_line_connecting_two_lines('h9a', 'h5a', '9h5')
-        # # 1h8
-        # line_drawer.draw_line_connecting_two_lines('h1a', 'h8a', '1h8')
-        # # 6h8
-        # line_drawer.draw_line_connecting_two_lines('h6a', 'h8a', '6h8')
-        # #2h9
-        # line_drawer.draw_line_connecting_two_lines('h2a', 'h9a', '2h9')
-        # # 3h4
-        # line_drawer.draw_line_connecting_two_lines('h3a', 'h4a', '3h4')
 
-        
+        # 1h2
+        #line_drawer.draw_line_connecting_two_lines('h2a', 'h1a', '1h2')
+        # # 5h6 Verificar Error
+        line_drawer.draw_line_connecting_two_lines('h5a', 'h6a', '5h6')
+        # # 4h5
+        line_drawer.draw_line_connecting_two_lines('h4a', 'h5a', '4h5')
+        # # 9h5
+        line_drawer.draw_line_connecting_two_lines('h9a', 'h5a', '9h5')
+        #9h2
+        line_drawer.draw_line_connecting_two_lines('h9b', 'h2b', '2h9')
+        # 4h3
+        line_drawer.draw_line_connecting_two_lines('h4b', 'h3b', '3h4')
+        # 6h8 works perfectly
+        line_drawer.draw_line_connecting_two_lines('h6b', 'h8b', '6h8')
+        # 1h8
+        line_drawer.draw_line_connecting_two_lines('h1a', 'h8a', '1h8')
+        #3h7
+        line_drawer.draw_line_connecting_two_lines('h3a', 'h7a', '7h3')
+        # 4h3
+        line_drawer.draw_line_connecting_two_lines('h4b', 'h3b', '3h4')
+        # 2h1
+        line_drawer.draw_line_connecting_two_lines('h2a', 'h1a', '1h2')
 
     def resolve(self):
         #Restart the lines

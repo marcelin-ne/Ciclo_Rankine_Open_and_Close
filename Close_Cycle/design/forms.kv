@@ -67,10 +67,8 @@ Screen:
                     MDTextField:
                         id:p1
                         height: .13 * self.parent.height
-                        icon_left: "thermometer"
                         hint_text: "Presión en el condensador kPa"
                         hint_text_font_size: "500sp"
-                        icon_left_color_focus: "orange"
                         mode: "rectangle"
                         helper_text: "Min 3 - Max :30 "
                         helper_text_mode: "on_focus"
@@ -83,9 +81,7 @@ Screen:
                         width: "250dp"
                         height: .13 * self.parent.height
                         font_size: "15sp" 
-                        icon_left: "car-brake-low-pressure"
                         hint_text: "Presión de entrada de la turbina kPa"
-                        icon_right_color_focus: "orange"
                         # max_text_length: 5
                         input_filter: "float"
                         error_color: 1, 0, 0, 1  # Rojo
@@ -97,9 +93,7 @@ Screen:
                         width: "250dp"
                         height: .13 * self.parent.height
                         font_size: "15sp" 
-                        icon_left: "engine-outline"
                         hint_text: "Presión de extracción kPa"
-                        icon_right_color_focus: "orange"
                         # max_text_length: 5
                         input_filter: "float"
                         helper_text: "Min 1000 - Max :22000 "
@@ -110,9 +104,7 @@ Screen:
                         width: "245dp"
                         height: .13 * self.parent.height
                         font_size: "15sp" 
-                        icon_left: "hvac"
                         hint_text: "Temperatura en la salida de la caldera / entrada"
-                        icon_right_color_focus: "orange"
                         # max_text_length: 3
                         input_filter: "float"
                         helper_text: "Min 200 - Max :800 "
@@ -123,9 +115,7 @@ Screen:
                         width: "250dp"
                         height: .13 * self.parent.height
                         font_size: "15sp" 
-                        icon_left: "dots-circle"
                         hint_text: "Eficiencia de la bomba %"
-                        icon_right_color_focus: "red"
                         helper_text: "Min 0.2 - Max :1"
                         helper_text_mode: "on_focus"
                     MDTextField:
@@ -133,10 +123,8 @@ Screen:
                         mode: "rectangle"
                         height: .13 * self.parent.height
                         hint_text_size: "5sp"
-                        icon_left: "dots-square"
                         hint_text: "Eficiencia de la turbina %"
                         font_size: "15sp"
-                        icon_right_color_focus: "red"
                         helper_text: "Min 0.2 - Max :1"
                         helper_text_mode: "on_focus"
 
@@ -272,19 +260,17 @@ Screen:
                             pos_hint: {'center_x': .6, 'center_y': .6}
                         # Image:
                         #     source:'../images/Ciclo_rakine_1.png'
-                        #     # Reemplaza con la ruta de tu imagen
                         #     size_hint: None,None
                         #     size:500, 800  # Ajusta estos valores según tus necesidades
                         #     pos_hint: {'center_x': .45, 'center_y': .45}
                         #     border: 5, 5, 5, 5  # Ajusta estos valores según el ancho del borde que desees
-                        #     #Add border 
                         #     canvas.before:
                         #         Color:
                         #             rgba: rgba('#aaaaaa')
                         #         Line:
                         #             width: 2
                         #             rectangle: (self.parent.x-30,  self.parent.y, self.parent.width, self.parent.height-25)
-            #Col 3 Results cards
+            # # Col 3 Results cards
         BoxLayout:
             size_hint_x: .2
             spacing: dp(8)

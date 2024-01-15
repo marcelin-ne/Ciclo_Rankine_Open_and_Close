@@ -2,6 +2,7 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from ciclo_rankine_open import Ciclo_Rankine_Open
+from line_drawer import LineDrawer
 
 
 class MainApp(MDApp):
